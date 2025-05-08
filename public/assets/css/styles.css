@@ -1,0 +1,298 @@
+#loader {
+    position: fixed; /* Menutupi seluruh layar */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #212121; /* Warna latar belakang loader */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Pastikan loader berada di atas konten lain */
+    color: white; /* Warna teks loader */
+    font-size: 1.5em;
+    font-family: monospace, sans-serif;
+}
+
+/* Styling untuk kontainer form */
+.form-container {
+    max-width: 400px; /* Menggunakan max-width agar responsif */
+    width: 90%; /* Lebar 90% dari parent */
+    background: linear-gradient(#212121, #212121) padding-box,
+                linear-gradient(145deg, transparent 35%,#e81cff, #40c9ff) border-box;
+    border: 2px solid transparent;
+    padding: 32px 24px;
+    font-size: 14px;
+    font-family: inherit;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-sizing: border-box;
+    border-radius: 16px;
+    background-size: 200% 100%;
+    animation: gradient 5s ease infinite;
+}
+
+h1 {
+    text-align: center;
+    color: #717171;
+}
+
+.form-container button:active {
+    scale: 0.95;
+}
+
+/* Styling untuk form */
+.form-container .form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Styling untuk grup input dengan animasi label */
+/* From Uiverse.io by AmIt-DasIT */ 
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    position: relative;
+    color: #717171;
+  }
+  
+  .container .label {
+    font-size: 15px;
+    padding-left: 10px;
+    position: absolute;
+    top: 13px;
+    transition: 0.3s;
+    pointer-events: none;
+  }
+  
+  .input {
+    width: 330px;
+    height: 45px;
+    border: none;
+    outline: none;
+    padding: 0px 7px;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 15px;
+    background-color: transparent;
+    box-shadow: 3px 3px 10px rgba(0,0,0,1),
+    -1px -1px 6px rgba(255, 255, 255, 0.4);
+  }
+  
+  .input:focus {
+    border: 2px solid transparent;
+    color: #fff;
+    box-shadow: 3px 3px 10px rgba(0,0,0,1),
+    -1px -1px 6px rgba(255, 255, 255, 0.4),
+    inset 3px 3px 10px rgba(0,0,0,1),
+    inset -1px -1px 6px rgba(255, 255, 255, 0.4);
+  }
+  
+  .container .input:valid ~ .label,
+  .container .input:focus ~ .label {
+    transition: 0.3s;
+    padding-left: 2px;
+    transform: translateY(-35px);
+  }
+  
+  .container .input:valid,
+  .container .input:focus {
+    box-shadow: 3px 3px 10px rgba(0,0,0,1),
+    -1px -1px 6px rgba(255, 255, 255, 0.4),
+    inset 3px 3px 10px rgba(0,0,0,1),
+    inset -1px -1px 6px rgba(255, 255, 255, 0.4);
+  }
+
+/* Animasi gradient pada background */
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Media Queries untuk layar yang lebih kecil */
+@media (max-width: 600px) {
+    .form-container {
+        padding: 24px 16px;
+        gap: 15px;
+        border-radius: 10px;
+    }
+
+    .form-container .form {
+        gap: 15px;
+    }
+
+    h1 {
+        font-size: 0.75em;
+    }
+
+    .form-group {
+        gap: 5px;
+    }
+
+    .form-group .label {
+        font-size: 14px;
+        top: 12px;
+    }
+
+    .input {
+        height: 40px;
+        font-size: 14px;
+        padding: 0 8px;
+    }
+
+    .form-group .input:valid ~ .label,
+    .form-group .input:focus ~ .label {
+        transform: translateY(-30px);
+        font-size: 10px;
+    }
+
+    button,
+    button::after {
+        padding: 8px 40px;
+        font-size: 16px;
+        border-radius: 4px;
+    }
+}
+
+@media (max-width: 400px) {
+    .form-container {
+        padding: 16px 12px;
+    }
+
+    .form-group .label {
+        font-size: 12px;
+        top: 10px;
+    }
+
+    .input {
+        height: 35px;
+        font-size: 12px;
+    }
+
+    .form-group .input:valid ~ .label,
+    .form-group .input:focus ~ .label {
+        transform: translateY(-25px);
+        font-size: 9px;
+    }
+
+    button,
+    button::after {
+        padding: 6px 30px;
+        font-size: 14px;
+    }
+}
+
+/* Gaya Glitch Loader (andrew-demchenk0) */
+.glitch {
+    position: relative;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #fff;
+    letter-spacing: 5px;
+    z-index: 1;
+    animation: shift 1s ease-in-out infinite alternate;
+}
+
+.glitch:before,
+.glitch:after {
+    display: block;
+    content: attr(data-glitch);
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.8;
+}
+
+.glitch:before {
+    animation: glitch 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+    color: #8b00ff;
+    z-index: -1;
+}
+
+.glitch:after {
+    animation: glitch 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
+    color: #00e571;
+    z-index: -2;
+}
+
+@keyframes glitch {
+    0% {
+        transform: translate(0);
+    }
+
+    20% {
+        transform: translate(-3px, 3px);
+    }
+
+    40% {
+        transform: translate(-3px, -3px);
+    }
+
+    60% {
+        transform: translate(3px, 3px);
+    }
+
+    80% {
+        transform: translate(3px, -3px);
+    }
+
+    to {
+        transform: translate(0);
+    }
+}
+
+@keyframes shift {
+    0%,
+    40%,
+    44%,
+    58%,
+    61%,
+    65%,
+    69%,
+    73%,
+    100% {
+        transform: skewX(0deg);
+    }
+
+    41% {
+        transform: skewX(10deg);
+    }
+
+    42% {
+        transform: skewX(-10deg);
+    }
+
+    59% {
+        transform: skewX(40deg) skewY(10deg);
+    }
+
+    60% {
+        transform: skewX(-40deg) skewY(-10deg);
+    }
+
+    63% {
+        transform: skewX(10deg) skewY(-5deg);
+    }
+
+    70% {
+        transform: skewX(-50deg) skewY(-20deg);
+    }
+
+    71% {
+        transform: skewX(10deg) skewY(-10deg);
+    }
+}
