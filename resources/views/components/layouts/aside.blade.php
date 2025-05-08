@@ -26,6 +26,22 @@
       </li>
       
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/casis">
+          <i class="bi bi-folder2-open"></i>
+          <span>Pemberkasan</span>
+        </a>
+      </li>
+      
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/casis">
+          <i class="bi bi-journals"></i>
+          <span>Laporan</span>
+        </a>
+      </li>
+      
+
     </ul>
 
   </aside><!-- End Sidebar-->
