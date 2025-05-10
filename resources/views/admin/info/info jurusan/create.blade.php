@@ -61,6 +61,16 @@
                             @enderror
                         </div>
 
+                        {{-- Logo --}}
+                        <div class="mb-3">
+                            <label for="cover" class="form-label">Cover Jurusan</label>
+                            <input type="file" name="cover" id="cover"
+                                class="form-control @error('cover') is-invalid @enderror" accept="image/*">
+                            @error('cover')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
                         <div class="d-flex justify-content-between">
                             <a href="{{ route('info_jurusan.index') }}" class="btn btn-secondary">Batal</a>
                             <button type="submit" class="btn btn-primary">Simpan</button>

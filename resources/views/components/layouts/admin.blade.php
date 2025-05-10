@@ -44,6 +44,17 @@
 <body>
 
     @yield('konten')
+        <script>
+        @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ session('success') }}',
+                timer: 1500,
+                showConfirmButton: false
+            })
+        @endif
+    </script>
 
     <footer id="footer" class="footer">
         <div class="copyright">

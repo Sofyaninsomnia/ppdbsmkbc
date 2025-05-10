@@ -21,14 +21,14 @@
                                 <div class="col">
                                     <div class="card h-100 shadow-sm">
                                         {{-- Gambar cover: dari storage jika ada, else placeholder --}}
-                                        <img src="" class="card-img-top" alt="">
+                                        <img src="{{ asset('storage/'.$jurusan->cover) }}" class="card-img-top" alt="">
                                         <div class="card-body d-flex flex-column">
                                             <h5 class="card-title"></h5>
-                                            @if ($jurusan->deskripsi)
-                                                <p class="card-text text-truncate">{{ $jurusan->deskripsi }}</p>
+                                            @if ($jurusan->jurusan->nama_jurusan)
+                                                <p class="card-text">{{ $jurusan->jurusan->nama_jurusan }}</p>
                                             @endif
                                             <div class="mt-auto">
-                                                <a href="{{ route('jurusan.show', $jurusan->id) }}"
+                                                <a href="{{ route('info_jurusan.show', $jurusan->id) }}"
                                                     class="btn btn-sm btn-outline-primary me-1">Detail</a>
                                                 <a href="{{ route('jurusan.edit', $jurusan->id) }}"
                                                     class="btn btn-sm btn-outline-warning me-1">Edit</a>

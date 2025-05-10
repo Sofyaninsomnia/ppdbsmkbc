@@ -16,7 +16,7 @@ class InfoJurusan extends Model
         'deskripsi_singkat',
         'deskripsi',
         'logo',
-        'foto_kegiatan',
+        'cover',
     ];
     public function jurusan()
     {
