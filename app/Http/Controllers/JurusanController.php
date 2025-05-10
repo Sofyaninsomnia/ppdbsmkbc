@@ -33,6 +33,29 @@ class JurusanController extends Controller
 
     }
 
+    function edit( $id) {
+        $jurusan = Jurusan::findOrFail($id);
+        return view('admin.jurusan.edit', compact('jurusan'));
+    }
+
+    function update(Request $request, $id) {
+
+        $jurusan = Jurusan::findOrFail($id);
+
+        $validator = Validator::make($request->all(), [
+            'nama_jurusan'  => 'required|string|max:100'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $jurusan->nama_jurusan = $request->nama_jurusan;
+        $jurusan->save();
+
+        return redirect()->route('jurusan.index')->with('success', 'Data berhasil ditambahkan');
+    }
+
     function destroy($id){
         $jurusan = Jurusan::findOrFail($id);
         $jurusan->delete();

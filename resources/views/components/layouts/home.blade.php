@@ -54,8 +54,9 @@
           <li><a href="#profil">Profil</a></li>
           <li><a href="#jurusan">Jurusan</a></li>
           <li><a href="#fasilitas">Fasilitas</a></li>
+          <li><a href="#contact">Kontak</a></li>
           <li><a href="#pricing">Info PPDB</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#pricing">Jobfair SMKBC 2025</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -89,11 +90,12 @@
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>Useful Links</h4>
           <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Terms of service</a></li>
-            <li><a href="#">Privacy policy</a></li>
+            <li><a href="#">Beranda</a></li>
+            <li><a href="#">Profil</a></li>
+            <li><a href="#">Jurusan</a></li>
+            <li><a href="#">Fasilitas</a></li>
+            <li><a href="#">Info PPDB</a></li>
+            <li><a href="#">Kontak</a></li>
           </ul>
         </div>
 

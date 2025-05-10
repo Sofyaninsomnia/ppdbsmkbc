@@ -23,7 +23,7 @@
                         <tbody>
                             @forelse($jurusan as $index => $jurusan)
                                 <tr>
-                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $jurusan->nama_jurusan }}</td>
                                     <td>
                                         <a href="{{ route('jurusan.edit', $jurusan) }}" class="btn btn-sm btn-info"><i class="bi bi-pen-fill" style="color: white"></i></a>
@@ -77,4 +77,15 @@
             </div>
         </div>
     </main>
+    <script>
+        @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ session('success') }}',
+                timer: 1500,
+                showConfirmButton: false
+            })
+        @endif
+    </script>
 @endsection

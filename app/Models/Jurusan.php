@@ -14,4 +14,9 @@ class Jurusan extends Model
     protected $fillable = [
         'nama_jurusan',
     ];
+
+        public function info()
+    {
+    	return $this->hasOne(InfoJurusan::class);
+    }
 }
