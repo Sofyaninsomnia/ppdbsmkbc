@@ -8,14 +8,14 @@
     <div class="container">
       <div class="row gy-5">
 
-        <!-- Team Member 1 -->
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+        @foreach ($infoJurusan as $jurusan)
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
           <div class="member">
             <div class="pic">
-              <img src="{{ asset('assets/img/jurusan/rpl.jpeg') }}" class="img-fluid" alt="" style="width: 100%; height: 500px; object-fit: cover;">
+              <img src="{{ asset('storage/'.$jurusan->cover) }}" class="img-fluid" alt="" style="width: 100%; height: 500px; object-fit: cover;">
             </div>
             <div class="member-info">
-              <h4>Rekayasa Perangkat Lunak (RPL)</h4>
+              <h4>{{ $jurusan->jurusan->nama_jurusan }}</h4>
               <span>Rekayasa Perangkat Lunak (RPL) adalah jurusan yang fokus pada pengembangan perangkat lunak</span>
               <p>
               <div class="d-flex">
@@ -23,42 +23,9 @@
               </div>
             </div>
           </div>
-        </div><!-- End Team Member -->
+        </div>
+        @endforeach
 
-        <!-- Team Member 2 -->
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-          <div class="member">
-            <div class="pic">
-              <img src="{{ asset('assets/img/jurusan/askep.jpeg') }}" class="img-fluid" alt="" style="width: 100%; height: 500px; object-fit: cover;">
-            </div>
-            <div class="member-info">
-              <h4>Layanan Kesehatan</h4>
-              <span>Jurusan Layanan Kesehatan fokus pada manajemen dan perawatan medis di fasilitas kesehatan.</span>
-              <p>
-              <div class="d-flex">
-                <a href="smkbece/lk.php" class="btn-get-started" style="color: #003366;">Lihat Selengkapnya >></a>
-              </div>
-            </div>
-          </div>
-        </div><!-- End Team Member -->
-
-        <!-- Team Member 3 -->
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-          <div class="member">
-            <div class="pic">
-              <img src="{{ asset('assets/img/jurusan/tabus.jpeg') }}" class="img-fluid" alt="" style="width: 100%; height: 500px; object-fit: cover;">
-            </div>
-            <div class="member-info">
-              <h4>Tata Busana</h4>
-              <span>
-                Jurusan Tata Busana mempelajari desain dan pembuatan busana. Lulusan bekerja di industri fashion.</span>
-              <p>
-              <div class="d-flex">
-                <a href="smkbece/tabus.php" class="btn-get-started" style="color: #003366;">Lihat Selengkapnya >></a>
-              </div>
-            </div>
-          </div>
-        </div><!-- End Team Member -->
 
       </div>
     </div>
@@ -67,7 +34,7 @@
       <div class="row gy-5">
 
         <!-- Team Member 4 -->
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
           <div class="member">
             <div class="pic">
               <img src="{{ asset('assets/img/jurusan/dkv.jpeg') }}" class="img-fluid" alt="" style="width: 100%; height: 500px; object-fit: cover;">
@@ -85,7 +52,7 @@
         <!-- End Team Member -->
 
         <!-- Team Member 5 -->
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
           <div class="member">
             <div class="pic">
               <img src="{{ asset('assets/img/jurusan/tbo.jpeg') }}" class="img-fluid" alt="" style="width: 100%; height: 500px; object-fit: cover;">

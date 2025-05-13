@@ -30,7 +30,7 @@
                                             <div class="mt-auto">
                                                 <a href="{{ route('info_jurusan.show', $jurusan->id) }}"
                                                     class="btn btn-sm btn-outline-primary me-1">Detail</a>
-                                                <a href="{{ route('jurusan.edit', $jurusan->id) }}"
+                                                <a href="{{ route('info_jurusan.edit', $jurusan->id) }}"
                                                     class="btn btn-sm btn-outline-warning me-1">Edit</a>
                                                 <form action="{{ route('jurusan.destroy', $jurusan->id) }}" method="POST"
                                                     class="d-inline" onsubmit="return confirm('Yakin ingin hapus?')">

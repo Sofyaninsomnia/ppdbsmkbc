@@ -1,25 +1,176 @@
+/* wrapper tombol */
+.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* kelas tombol umum */
+.btn-login,
+.btn-register {
+    padding: 12px 40px;
+    font-size: 18px;
+    border: 2px solid;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* border-color spesifik */
+.btn-login {
+    border-color: #00ffd5;
+}
+
+.btn-register {
+    border-color: #e94be8;
+}
+
+/* pseudo-element generik untuk animasi clip-path */
+.btn-login::after,
+.btn-register::after {
+    --move1: inset(50% 50% 50% 50%);
+    --move2: inset(31% 0 40% 0);
+    --move3: inset(39% 0 15% 0);
+    --move4: inset(45% 0 40% 0);
+    --move5: inset(45% 0 6% 0);
+    --move6: inset(14% 0 61% 0);
+
+    content: '';
+    clip-path: var(--move1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+/* teks spesifik per tombol */
+.btn-login::after {
+    content: 'LOGIN';
+}
+
+.btn-register::after {
+    content: 'REGISTER';
+}
+
+/* hover styling umum */
+.btn-login:hover,
+.btn-register:hover {
+    transform: translateY(-3px);
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* efek warna & shadow berbeda */
+.btn-login:hover {
+    color: #00ffd5;
+    box-shadow: 0 0 15px rgba(0, 255, 213, 0.7);
+}
+
+.btn-register:hover {
+    color: #e94be8;
+    box-shadow: 0 0 15px rgba(233, 75, 232, 0.7);
+}
+
+/* animasi clip-path pada pseudo-element */
+.btn-login:hover::after,
+.btn-register:hover::after {
+    animation: glow-btn 1s steps(2, end) both;
+    text-shadow: -3px -3px 0 #1df2f0, 3px 3px 0 #E94BE8;
+    border: 3px solid currentColor;
+}
+
+@keyframes glow-btn {
+    0% {
+        clip-path: var(--move1);
+        transform: translate(0, -10px);
+    }
+
+    10% {
+        clip-path: var(--move2);
+        transform: translate(-10px, 10px);
+    }
+
+    20% {
+        clip-path: var(--move3);
+        transform: translate(10px, 0);
+    }
+
+    30% {
+        clip-path: var(--move4);
+        transform: translate(-10px, 10px);
+    }
+
+    40% {
+        clip-path: var(--move5);
+        transform: translate(10px, -10px);
+    }
+
+    50% {
+        clip-path: var(--move6);
+        transform: translate(-10px, 10px);
+    }
+
+    60% {
+        clip-path: var(--move1);
+        transform: translate(10px, -10px);
+    }
+
+    70% {
+        clip-path: var(--move3);
+        transform: translate(-10px, 10px);
+    }
+
+    80% {
+        clip-path: var(--move2);
+        transform: translate(10px, -10px);
+    }
+
+    90% {
+        clip-path: var(--move4);
+        transform: translate(-10px, 10px);
+    }
+
+    100% {
+        clip-path: var(--move1);
+        transform: translate(0, 0);
+    }
+}
+
+
 #loader {
-    position: fixed; /* Menutupi seluruh layar */
+    position: fixed;
+    /* Menutupi seluruh layar */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #212121; /* Warna latar belakang loader */
+    background-color: #212121;
+    /* Warna latar belakang loader */
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Pastikan loader berada di atas konten lain */
-    color: white; /* Warna teks loader */
+    z-index: 1000;
+    /* Pastikan loader berada di atas konten lain */
+    color: white;
+    /* Warna teks loader */
     font-size: 1.5em;
     font-family: monospace, sans-serif;
 }
 
 /* Styling untuk kontainer form */
 .form-container {
-    max-width: 400px; /* Menggunakan max-width agar responsif */
-    width: 90%; /* Lebar 90% dari parent */
+    max-width: 400px;
+    /* Menggunakan max-width agar responsif */
+    width: 90%;
+    /* Lebar 90% dari parent */
     background: linear-gradient(#212121, #212121) padding-box,
-                linear-gradient(145deg, transparent 35%,#e81cff, #40c9ff) border-box;
+        linear-gradient(145deg, transparent 35%, #e81cff, #40c9ff) border-box;
     border: 2px solid transparent;
     padding: 32px 24px;
     font-size: 14px;
@@ -51,25 +202,25 @@ h1 {
 }
 
 /* Styling untuk grup input dengan animasi label */
-/* From Uiverse.io by AmIt-DasIT */ 
+/* From Uiverse.io by AmIt-DasIT */
 .container {
     display: flex;
     flex-direction: column;
     gap: 7px;
     position: relative;
     color: #717171;
-  }
-  
-  .container .label {
+}
+
+.container .label {
     font-size: 15px;
     padding-left: 10px;
     position: absolute;
     top: 13px;
     transition: 0.3s;
     pointer-events: none;
-  }
-  
-  .input {
+}
+
+.input {
     width: 330px;
     height: 45px;
     border: none;
@@ -79,33 +230,33 @@ h1 {
     color: #fff;
     font-size: 15px;
     background-color: transparent;
-    box-shadow: 3px 3px 10px rgba(0,0,0,1),
-    -1px -1px 6px rgba(255, 255, 255, 0.4);
-  }
-  
-  .input:focus {
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+        -1px -1px 6px rgba(255, 255, 255, 0.4);
+}
+
+.input:focus {
     border: 2px solid transparent;
     color: #fff;
-    box-shadow: 3px 3px 10px rgba(0,0,0,1),
-    -1px -1px 6px rgba(255, 255, 255, 0.4),
-    inset 3px 3px 10px rgba(0,0,0,1),
-    inset -1px -1px 6px rgba(255, 255, 255, 0.4);
-  }
-  
-  .container .input:valid ~ .label,
-  .container .input:focus ~ .label {
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+        -1px -1px 6px rgba(255, 255, 255, 0.4),
+        inset 3px 3px 10px rgba(0, 0, 0, 1),
+        inset -1px -1px 6px rgba(255, 255, 255, 0.4);
+}
+
+.container .input:valid~.label,
+.container .input:focus~.label {
     transition: 0.3s;
     padding-left: 2px;
     transform: translateY(-35px);
-  }
-  
-  .container .input:valid,
-  .container .input:focus {
-    box-shadow: 3px 3px 10px rgba(0,0,0,1),
-    -1px -1px 6px rgba(255, 255, 255, 0.4),
-    inset 3px 3px 10px rgba(0,0,0,1),
-    inset -1px -1px 6px rgba(255, 255, 255, 0.4);
-  }
+}
+
+.container .input:valid,
+.container .input:focus {
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+        -1px -1px 6px rgba(255, 255, 255, 0.4),
+        inset 3px 3px 10px rgba(0, 0, 0, 1),
+        inset -1px -1px 6px rgba(255, 255, 255, 0.4);
+}
 
 /* Animasi gradient pada background */
 @keyframes gradient {
@@ -153,8 +304,8 @@ h1 {
         padding: 0 8px;
     }
 
-    .form-group .input:valid ~ .label,
-    .form-group .input:focus ~ .label {
+    .form-group .input:valid~.label,
+    .form-group .input:focus~.label {
         transform: translateY(-30px);
         font-size: 10px;
     }
@@ -182,8 +333,8 @@ h1 {
         font-size: 12px;
     }
 
-    .form-group .input:valid ~ .label,
-    .form-group .input:focus ~ .label {
+    .form-group .input:valid~.label,
+    .form-group .input:focus~.label {
         transform: translateY(-25px);
         font-size: 9px;
     }
@@ -256,6 +407,7 @@ h1 {
 }
 
 @keyframes shift {
+
     0%,
     40%,
     44%,
