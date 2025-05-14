@@ -10,8 +10,7 @@
 
     use Illuminate\Support\Facades\Route;
 
-    Route::resource('/', Home::class);
-
+    Route::resource('home', Home::class);
     Route::resource('siswa', SiswaController::class);
     Route::resource('jurusan', JurusanController::class);
     Route::resource('info_jurusan', Info_Jurusan::class);

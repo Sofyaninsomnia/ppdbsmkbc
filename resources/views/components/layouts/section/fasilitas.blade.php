@@ -11,8 +11,8 @@
 
       <div class="col-lg-3 col-md-4">
         <div class="gallery-item">
-          <a href="img/gallery/rpl.jpeg" class="glightbox" data-gallery="images-gallery">
-            <img src="img/gallery/rpl.jpeg" class="img-fluid" alt="" style="width: 110%; height: 240px; object-fit: cover;">
+          <a href="assets/img/gallery/rpl.jpeg" class="glightbox" data-gallery="images-gallery">
+            <img src="assets/img/gallery/rpl.jpeg" class="img-fluid" alt="" style="width: 110%; height: 240px; object-fit: cover;">
           </a>
           <div class="caption" style="text-align: center; padding: 5px; background-color: rgb(11, 21, 110); color: white; font-size: 12px;">
             Fasilitas RPL
@@ -22,8 +22,8 @@
 
       <div class="col-lg-3 col-md-4">
         <div class="gallery-item">
-          <a href="img/gallery/lk.jpeg" class="glightbox" data-gallery="images-gallery">
-            <img src="img/gallery/lk.jpeg" class="img-fluid" alt="" style="width: 110%; height: 240px; object-fit: cover;">
+          <a href="assets/img/gallery/lk.jpeg" class="glightbox" data-gallery="images-gallery">
+            <img src="assets/img/gallery/lk.jpeg" class="img-fluid" alt="" style="width: 110%; height: 240px; object-fit: cover;">
           </a>
           <div class="caption" style="text-align: center; padding: 5px; background-color:  rgb(11, 21, 110); color: white; font-size: 12px;">
             Fasilitas LK
@@ -33,8 +33,8 @@
 
       <div class="col-lg-3 col-md-4">
         <div class="gallery-item">
-          <a href="img/gallery/tbo.jpeg" class="glightbox" data-gallery="images-gallery">
-            <img src="img/gallery/tbo.jpeg" class="img-fluid" alt="" style="width: 110%; height: 240px; object-fit: cover;">
+          <a href="assets/img/gallery/tbo.jpeg" class="glightbox" data-gallery="images-gallery">
+            <img src="assets/img/gallery/tbo.jpeg" class="img-fluid" alt="" style="width: 110%; height: 240px; object-fit: cover;">
           </a>
           <div class="caption" style="text-align: center; padding: 5px; background-color:  rgb(11, 21, 110); color: white; font-size: 12px;">
             Fasilitas TBO
@@ -44,8 +44,8 @@
 
       <div class="col-lg-3 col-md-4">
         <div class="gallery-item">
-          <a href="img/gallery/tabus.jpeg" class="glightbox" data-gallery="images-gallery">
-            <img src="img/gallery/tabus.jpeg" class="img-fluid" alt="" style="width: 110%; height: 240px; object-fit: cover;">
+          <a href="assets/img/gallery/tabus.jpeg" class="glightbox" data-gallery="images-gallery">
+            <img src="assets/img/gallery/tabus.jpeg" class="img-fluid" alt="" style="width: 110%; height: 240px; object-fit: cover;">
           </a>
           <div class="caption" style="text-align: center; padding: 5px; background-color:  rgb(11, 21, 110); color: white; font-size: 12px;">
             Fasilitas Tabus
@@ -55,8 +55,8 @@
 
       <div class="col-lg-3 col-md-4">
         <div class="gallery-item">
-          <a href="img/gallery/sti.jpeg" class="glightbox" data-gallery="images-gallery">
-            <img src="img/gallery/sti.jpeg" class="img-fluid" alt="" style="width: 110%; height: 240px; object-fit: cover;">
+          <a href="assets/img/gallery/sti.jpeg" class="glightbox" data-gallery="images-gallery">
+            <img src="assets/img/gallery/sti.jpeg" class="img-fluid" alt="" style="width: 110%; height: 240px; object-fit: cover;">
           </a>
           <div class="caption" style="text-align: center; padding: 5px; background-color:  rgb(11, 21, 110); color: white; font-size: 12px;">
             Fasilitas STI
@@ -66,8 +66,8 @@
 
       <div class="col-lg-3 col-md-4">
         <div class="gallery-item">
-          <a href="img/gallery/perpus.jpeg" class="glightbox" data-gallery="images-gallery">
-            <img src="img/gallery/perpus.jpeg" class="img-fluid" alt="" style="width: 110%; height: 240px; object-fit: cover;">
+          <a href="assets/img/gallery/perpus.jpeg" class="glightbox" data-gallery="images-gallery">
+            <img src="assets/img/gallery/perpus.jpeg" class="img-fluid" alt="" style="width: 110%; height: 240px; object-fit: cover;">
           </a>
           <div class="caption" style="text-align: center; padding: 5px; background-color:  rgb(11, 21, 110); color: white; font-size: 12px;">
             Fasilitas Perpustakaan
@@ -77,8 +77,8 @@
 
       <div class="col-lg-3 col-md-4">
         <div class="gallery-item">
-          <a href="img/gallery/toilet.jpg" class="glightbox" data-gallery="images-gallery">
-            <img src="img/gallery/toilet.jpg" class="img-fluid" alt="" style="width: 110%; height: 240px; object-fit: cover;">
+          <a href="assets/img/gallery/toilet.jpg" class="glightbox" data-gallery="images-gallery">
+            <img src="assets/img/gallery/toilet.jpg" class="img-fluid" alt="" style="width: 110%; height: 240px; object-fit: cover;">
           </a>
           <div class="caption" style="text-align: center; padding: 5px; background-color:  rgb(11, 21, 110); color: white; font-size: 12px;">
             Fasilitas Toilet
@@ -88,8 +88,8 @@
 
       <div class="col-lg-3 col-md-4">
         <div class="gallery-item">
-          <a href="img/gallery/rpl.jpeg" class="glightbox" data-gallery="images-gallery">
-            <img src="img/gallery/rpl.jpeg" class="img-fluid" alt="" style="width: 110%; height: 240px; object-fit: cover;">
+          <a href="assets/img/gallery/rpl.jpeg" class="glightbox" data-gallery="images-gallery">
+            <img src="assets/img/gallery/rpl.jpeg" class="img-fluid" alt="" style="width: 110%; height: 240px; object-fit: cover;">
           </a>
           <div class="caption" style="text-align: center; padding: 5px; background-color:  rgb(11, 21, 110); color: white; font-size: 12px;">
             Fasilitas RPL

@@ -4,13 +4,13 @@
     <main class="main">
 
         <!-- Hero Section -->
-        <section id="hero" class="hero section dark-background">
-            <img src="assets/img/hero-bg-2.jpg" alt="" class="hero-bg">
+        <section id="hero" class="hero section dark-background" style="min-height: 100vh; padding: 80px 0;">
+            <img src="assets/img/school.jpg" alt="" class="hero-bg">
 
             <div class="container">
                 <div class="row gy-4 justify-content-between">
                     <div class="col-lg-4 order-lg-last hero-img" data-aos="zoom-out" data-aos-delay="100">
-                        <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
+                        <img src="assets/img/hero.png" width="1800px" height="auto" class="img-fluid animated" alt="">
                     </div>
 
                     <div class="col-lg-6  d-flex flex-column justify-content-center" data-aos="fade-in">
@@ -61,7 +61,7 @@
                         <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
                             <div class="member">
                                 <div class="pic">
-                                    <img src="{{ asset('storage/'.$jurusan->cover) }}" class="img-fluid" alt=""
+                                    <img src="{{ asset('storage/' . $jurusan->cover) }}" class="img-fluid" alt=""
                                         style="width: 100%; height: 500px; object-fit: cover;">
                                 </div>
                                 <div class="member-info">
@@ -69,7 +69,7 @@
                                     <span>{{ $jurusan->deskripsi_singkat }}</span>
                                     <p>
                                     <div class="d-flex">
-                                        <a href="smkbece/rpl.php" class="btn-get-started" style="color: #003366;">Lihat
+                                        <a href="{{ route('home.show', $jurusan->id) }}" class="btn-get-started" style="color: #003366;">Lihat
                                             Selengkapnya >></a>
                                     </div>
                                 </div>
@@ -80,175 +80,183 @@
 
                 </div>
             </div>
-            
+
             @if ($infoJurusan->count() > 3)
-            <div class="container" style="margin-top: 40px;">
-                <div class="row gy-5">
+                <div class="container" style="margin-top: 40px;">
+                    <div class="row gy-5">
 
-                    @foreach ($infoJurusan->skip(3) as $jurusan)
-                        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                            <div class="member">
-                                <div class="pic">
-                                    <img src="{{ asset('storage/'.$jurusan->cover) }}" class="img-fluid" alt=""
-                                        style="width: 100%; height: 500px; object-fit: cover;">
-                                </div>
-                                <div class="member-info">
-                                    <h4>{{ $jurusan->jurusan->nama_jurusan }}</h4>
-                                    <span>{{ $jurusan->deskripsi_singkat }}</span>
-                                    <p>
-                                    <div class="d-flex">
-                                        <a href="smkbece/rpl.php" class="btn-get-started" style="color: #003366;">Lihat
-                                            Selengkapnya >></a>
+                        @foreach ($infoJurusan->skip(3) as $jurusan)
+                            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                                <div class="member">
+                                    <div class="pic">
+                                        <img src="{{ asset('storage/' . $jurusan->cover) }}" class="img-fluid"
+                                            alt="" style="width: 100%; height: 500px; object-fit: cover;">
+                                    </div>
+                                    <div class="member-info">
+                                        <h4>{{ $jurusan->jurusan->nama_jurusan }}</h4>
+                                        <span>{{ $jurusan->deskripsi_singkat }}</span>
+                                        <p>
+                                        <div class="d-flex">
+                                            <a href="{{ route('home.show', $jurusan->id) }}" class="btn-get-started" style="color: #003366;">Lihat
+                                                Selengkapnya >></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
 
+                    </div>
                 </div>
-            </div>
             @endif
         </section>
 
         <x-layouts.section.fasilitas></x-layouts.section.fasilitas>
 
-        <!-- Testimonials Section -->
-        <section id="testimonials" class="testimonials section dark-background">
+        <section id="fasilitas" class="testimonials section dark-background">
 
-            <img src="assets/img/testimonials-bg.jpg" class="testimonials-bg" alt="">
+            <img src="assets/img/school.jpg" class="testimonials-bg" alt="">
 
-            <div class="container" data-aos="fade-up" data-aos-delay="100">
+            <div class="container aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
 
                 <div class="swiper init-swiper">
                     <script type="application/json" class="swiper-config">
-          {
-            "loop": true,
-            "speed": 600,
-            "autoplay": {
-              "delay": 5000
-            },
-            "slidesPerView": "auto",
-            "pagination": {
-              "el": ".swiper-pagination",
-              "type": "bullets",
-              "clickable": true
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "auto",
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              }
             }
-          }
-        </script>
-                    <div class="swiper-wrapper">
+          </script>
+                    <!-- Team Section -->
 
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img"
-                                    alt="">
-                                <h3>Saul Goodman</h3>
-                                <h4>Ceo &amp; Founder</h4>
-                                <div class="stars">
-                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i>
-                                </div>
-                                <p>
-                                    <i class="bi bi-quote quote-icon-left"></i>
-                                    <span>Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit
-                                        rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam,
-                                        risus at semper.</span>
-                                    <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div><!-- End testimonial item -->
+                    <!-- Section Title -->
+                    <h1 class="text-center text-light display-3 fw-bold mb-4">
+                        Wujudkan Impianmu Bersama <br>
+                        <span class="text-light">SMK BINA CENDEKIA CIREBON</span>
+                    </h1>
 
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img"
-                                    alt="">
-                                <h3>Sara Wilsson</h3>
-                                <h4>Designer</h4>
-                                <div class="stars">
-                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i>
-                                </div>
-                                <p>
-                                    <i class="bi bi-quote quote-icon-left"></i>
-                                    <span>Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid
-                                        cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet
-                                        legam anim culpa.</span>
-                                    <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div><!-- End testimonial item -->
+                    <div class="text-center mb-5">
+                        <i>
+                            <h7 class="lead text-white fw-bold" style="font-family: 'Roboto', sans-serif;">
+                                SMK Bina Cendekia Cirebon menjadi wahana bertumbuh untuk mempersiapkan diri
+                                <br>melanjutkan perjalanan menuntut ilmu di Perguruan Tinggi Negeri.
+                            </h7>
+                        </i>
+                    </div>
 
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img"
-                                    alt="">
-                                <h3>Jena Karlis</h3>
-                                <h4>Store Owner</h4>
-                                <div class="stars">
-                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i>
+                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                        <div class="center">
+                            <div class="carousel-inner">
+                                <div class="carousel-item">
+                                    <img src="assets/img/bahan1.png" width="40%" height="auto" class="img-fluid"
+                                        alt="">
                                 </div>
-                                <p>
-                                    <i class="bi bi-quote quote-icon-left"></i>
-                                    <span>Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem
-                                        veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint
-                                        minim.</span>
-                                    <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
+                                <div class="carousel-item active">
+                                    <img src="assets/img/bahan2.png" width="40%" height="auto" class="img-fluid"
+                                        alt="">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="assets/img/bahan3.png" width="40%" height="auto" class="img-fluid"
+                                        alt="">
+                                </div>
                             </div>
-                        </div><!-- End testimonial item -->
+                            <button class="carousel-control-prev" type="button"
+                                data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button"
+                                data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                    <style>
+                        .center {
+                            text-align: center;
+                        }
+                    </style>
 
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img"
-                                    alt="">
-                                <h3>Matt Brandon</h3>
-                                <h4>Freelancer</h4>
-                                <div class="stars">
-                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i>
-                                </div>
-                                <p>
-                                    <i class="bi bi-quote quote-icon-left"></i>
-                                    <span>Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim
-                                        fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem
-                                        dolore labore illum veniam.</span>
-                                    <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div><!-- End testimonial item -->
+                    <div class="container mt-3">
+                        <div class="row gy-5">
 
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img"
-                                    alt="">
-                                <h3>John Larson</h3>
-                                <h4>Entrepreneur</h4>
-                                <div class="stars">
-                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i>
-                                </div>
-                                <p>
-                                    <i class="bi bi-quote quote-icon-left"></i>
-                                    <span>Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor
-                                        noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse
-                                        veniam culpa fore nisi cillum quid.</span>
-                                    <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div><!-- End testimonial item -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="fasilita" class="details section">
+            <div class="container">
+                <div class="row gy-4 align-items-center features-item">
+                    <div class="col-md-5 d-flex align-items-center aos-init aos-animate" data-aos="zoom-out"
+                        data-aos-delay="100">
+                        <img src="assets/img/hero.png" width="500px" height="auto" class=" animated"
+                            alt="">
+                    </div>
+                    <div class="col-md-7 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+                        <h3>Alasan mengapa Anda harus mempertimbangkan untuk masuk ke SMK Bina Cendekia Cirebon:</h3>
+                        <p>
+                        </p>
+                        <ul>
+                            <li
+                                style="display: flex; align-items: center; margin: 10px 0; padding: 10px; background-color: #fff; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                                <i class="bi bi-check"></i><span> Menggunakan kurikulum yang relevan dengan kebutuhan
+                                    industri dan perkembangan teknologi.</span>
+                            </li>
+                            <li
+                                style="display: flex; align-items: center; margin: 10px 0; padding: 10px; background-color: #fff; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                                <i class="bi bi-check"></i> <span> Guru yang berpengalaman di bidangnya.</span>
+                            </li>
+                            <li
+                                style="display: flex; align-items: center; margin: 10px 0; padding: 10px; background-color: #fff; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                                <i class="bi bi-check"></i> <span> Dilengkapi dengan ruang kelas yang nyaman dan
+                                    laboratorium modern.</span>
+                            </li>
+                            <li
+                                style="display: flex; align-items: center; margin: 10px 0; padding: 10px; background-color: #fff; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                                <i class="bi bi-check"></i><span> Memiliki kerjasama dengan perusahaan untuk pengalaman
+                                    kerja nyata.</span>
+                            </li>
+                            <li
+                                style="display: flex; align-items: center; margin: 10px 0; padding: 10px; background-color: #fff; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                                <i class="bi bi-check"></i> <span> Menyediakan berbagai jurusan yang siap memasuki dunia
+                                    kerja.</span>
+                            </li>
+                            <li
+                                style="display: flex; align-items: center; margin: 10px 0; padding: 10px; background-color: #fff; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                                <i class="bi bi-check"></i> <span> Fokus pada pengembangan keterampilan interpersonal dan
+                                    profesional.</span>
+                            </li>
+                            <li
+                                style="display: flex; align-items: center; margin: 10px 0; padding: 10px; background-color: #fff; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                                <i class="bi bi-check"></i> <span> Memiliki akreditasi yang menunjukkan kualitas pendidikan
+                                    yang tinggi.</span>
+                            </li>
+                            <li
+                                style="display: flex; align-items: center; margin: 10px 0; padding: 10px; background-color: #fff; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                                <i class="bi bi-check"></i><span> Beragam kegiatan ekstrakurikuler yang mendukung
+                                    pengembangan minat dan bakat.</span>
+                            </li>
+                        </ul>
 
                     </div>
-                    <div class="swiper-pagination"></div>
-                </div>
+                </div><!-- End Features Item -->
+
+
 
             </div>
 
-        </section><!-- /Testimonials Section -->
+        </section>
 
         <!-- Contact Section -->
         <section id="contact" class="contact section">
@@ -267,24 +275,24 @@
                         <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
                             <i class="bi bi-geo-alt flex-shrink-0"></i>
                             <div>
-                                <h3>Address</h3>
-                                <p>A108 Adam Street, New York, NY 535022</p>
+                                <h3>Alamat</h3>
+                                <p>Mertapada wetan jl kh wahid hasyim</p>
                             </div>
                         </div><!-- End Info Item -->
 
                         <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
                             <i class="bi bi-telephone flex-shrink-0"></i>
                             <div>
-                                <h3>Call Us</h3>
-                                <p>+1 5589 55488 55</p>
+                                <h3>Telepon</h3>
+                                <p>0896 0286 7121</p>
                             </div>
                         </div><!-- End Info Item -->
 
                         <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
                             <i class="bi bi-envelope flex-shrink-0"></i>
                             <div>
-                                <h3>Email Us</h3>
-                                <p>info@example.com</p>
+                                <h3>Email</h3>
+                                <p>smkbinacendekia@gmail.com</p>
                             </div>
                         </div><!-- End Info Item -->
 
@@ -311,7 +319,7 @@
                                 </div>
 
                                 <div class="col-md-12">
-                                    <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                                    <textarea class="form-control" name="message" rows="6" placeholder="Pesan" required=""></textarea>
                                 </div>
 
                                 <div class="col-md-12 text-center">
@@ -319,7 +327,7 @@
                                     <div class="error-message"></div>
                                     <div class="sent-message">Your message has been sent. Thank you!</div>
 
-                                    <button type="submit">Send Message</button>
+                                    <button type="submit">Kirim pesan</button>
                                 </div>
 
                             </div>
