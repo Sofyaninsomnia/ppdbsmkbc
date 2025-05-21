@@ -55,7 +55,7 @@
           <li><a href="#jurusan">Jurusan</a></li>
           <li><a href="#fasilitas">Fasilitas</a></li>
           <li><a href="#contact">Kontak</a></li>
-          <li><a href="/auth">Login</a></li>
+          <li><a href="{{ route('auth') }}">Login</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -113,7 +113,7 @@
           <h4>Dukung kami</h4>
           <p>Ingin menggapai cita-cita? yuk gabung dengan kami dengan daftarkan dirimu disini!</p>
           <form action="forms/newsletter.php" method="post" class="php-email-form">
-            <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Daftar"></div>
+            <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
             <div class="loading">Loading</div>
             <div class="error-message"></div>
             <div class="sent-message">Permintaan kamu sudah terkirim, terima kasih sudah bergabung</div>

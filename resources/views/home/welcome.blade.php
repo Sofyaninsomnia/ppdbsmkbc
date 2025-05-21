@@ -19,7 +19,7 @@
                             depanmu dimulai dengan pendidikan berkualitas, keterampilan nyata, dan peluang karir yang tak
                             terbatas!.</p>
                         <div class="d-flex">
-                            <button onclick="location.href='/auth'" class="btn-get-started">Daftar sekarang</button>
+                            <button onclick="location.href='/daftar/registrasi'" class="btn-get-started">Daftar sekarang</button>
                         </div>
                     </div>
 
@@ -134,9 +134,6 @@
               }
             }
           </script>
-                    <!-- Team Section -->
-
-                    <!-- Section Title -->
                     <h1 class="text-center text-light display-3 fw-bold mb-4">
                         Wujudkan Impianmu Bersama <br>
                         <span class="text-light">SMK BINA CENDEKIA CIREBON</span>

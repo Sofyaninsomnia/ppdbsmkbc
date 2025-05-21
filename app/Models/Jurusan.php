@@ -15,8 +15,13 @@ class Jurusan extends Model
         'nama_jurusan',
     ];
 
-        public function info()
+    public function info()
     {
-    	return $this->hasOne(InfoJurusan::class);
+        return $this->hasOne(InfoJurusan::class);
+    }
+
+    public function daftar()
+    {
+        return $this->hasOne(Pendaftaran::class);
     }
 }

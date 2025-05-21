@@ -30,6 +30,15 @@
 
 
         <li class="nav-item">
+            <a class="nav-link @activeclass('pendaftaran')" href="/pendaftaran">
+                <i class="bi bi-person"></i>
+                <span>Info pendaftaran</span>
+            </a>
+        </li>
+
+
+
+        <li class="nav-item">
             <a class="nav-link @activeclass('casis')" href="/casis">
                 <i class="bi bi-person"></i>
                 <span>Data casis</span>
