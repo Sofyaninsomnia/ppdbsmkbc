@@ -12,12 +12,14 @@ class Casis extends Model
     protected $table = 'casis';
 
     protected $fillable = [
+        'nisn',
         'nama',
         'tgl_lahir',
         'alamat',
         'jenis_kelamin',
         'asal_sekolah',
-        'jurusan'
+        'foto',
+        'jurusan_id'
     ];
 
     public function jurusan()

@@ -12,8 +12,19 @@
                         <div class="card-body">
                             <h5 class="card-title">Form Tambah Data Calon Siswa</h5>
 
-                            <form action="{{ route('casis.store') }}" method="POST">
+                            <form action="{{ route('casis.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
+
+                                <div class="row mb-3">
+                                    <label for="nisn" class="col-md-4 col-lg-3 col-form-label">Nisn</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input type="text" class="form-control @error('nisn') is-invalid @enderror"
+                                            id="nisn" name="nisn" value="{{ old('nisn') }}" required>
+                                        @error('nisn')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
 
                                 <div class="row mb-3">
                                     <label for="nama" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
@@ -76,6 +87,32 @@
                                             id="asal_sekolah" name="asal_sekolah" value="{{ old('asal_sekolah') }}"
                                             required>
                                         @error('asal_sekolah')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="foto" class="col-md-4 col-lg-3 col-form-label">Pas foto</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input type="file"
+                                            class="form-control @error('foto') is-invalid @enderror"
+                                            id="foto" name="foto" value="{{ old('foto') }}"
+                                            required>
+                                        @error('foto')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="no_hp" class="col-md-4 col-lg-3 col-form-label">No Whaatsapp</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input type="number"
+                                            class="form-control @error('no_hp') is-invalid @enderror"
+                                            id="no_hp" name="no_hp" value="{{ old('no_hp') }}"
+                                            required>
+                                        @error('no_hp')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>

@@ -11,9 +11,20 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Ubah data casis</h4>
-                    <form action="{{ route('casis.update', $casis->id) }}" method="POST">
+                    <form action="{{ route('casis.update', $casis->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
+
+                        <div class="row mb-3">
+                            <label for="nisn" class="col-md-4 col-lg-3 col-form-label">Nisn</label>
+                            <div class="col-md-8 col-lg-9">
+                                <input type="text" class="form-control @error('nisn') is-invalid @enderror"
+                                    id="nisn" name="nisn" value="{{ old('nisn', $casis->nisn) }}" required>
+                                @error('nisn')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
 
                         <div class="row mb-3">
                             <label for="nama" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
@@ -74,6 +85,35 @@
                                     id="asal_sekolah" name="asal_sekolah"
                                     value="{{ old('asal_sekolah', $casis->asal_sekolah) }}" required>
                                 @error('asal_sekolah')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="foto" class="col-md-4 col-lg-3 col-form-label">Pas foto</label>
+                            <div class="col-md-8 col-lg-9">
+                                <input type="file" class="form-control @error('foto') is-invalid @enderror"
+                                    id="foto" name="foto" value="{{ old('foto', $casis->foto) }}">
+                                @if ($casis->foto)
+                                    <small class="text-muted">Kosongkan jika tidak ingin mengubah foto.</small>
+                                    <br>
+                                    <img src="{{ asset('storage/' . $casis->foto) }}" alt="Logo saat ini"
+                                        style="max-width: 100px">
+                                @endif
+                                @error('foto')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                   
+                        <div class="row mb-3">
+                            <label for="no_hp" class="col-md-4 col-lg-3 col-form-label">No Whaatsaap</label>
+                            <div class="col-md-8 col-lg-9">
+                                <input type="text" class="form-control @error('no_hp') is-invalid @enderror"
+                                    id="no_hp" name="no_hp"
+                                    value="{{ old('no_hp', $casis->no_hp) }}" required>
+                                @error('no_hp')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
