@@ -147,13 +147,30 @@
     </div>
     <script>
         @if (session('success'))
+            // SweetAlert akan menampilkan pesan dan kemudian langsung redirect
             Swal.fire({
                 icon: 'success',
                 title: 'Berhasil!',
                 text: '{{ session('success') }}',
-                timer: 1500,
-                showConfirmButton: false
-            })
+                showConfirmButton: false, // Tidak menampilkan tombol "OK" di sini
+                timer: 2000, // Durasi SweetAlert sebelum redirect
+                timerProgressBar: true
+            }).then(() => {
+                // Setelah SweetAlert selesai, browser akan di-redirect
+                // ke halaman print yang sudah ditentukan di controller
+                window.location.href = "{{ session('redirect_to_print') }}";
+            });
+        @endif
+
+        // Tangani error validasi dari Laravel
+        @if ($errors->any())
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal!',
+                html: '<ul>@foreach ($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul>',
+                showConfirmButton: true,
+                confirmButtonText: 'OK',
+            });
         @endif
     </script>
     <script src="{{ asset('assets/voler/js/feather-icons/feather.min.js')}}"></script>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Casis;
+use App\Models\Jurusan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Validator;
@@ -11,13 +12,15 @@ class CasisController extends Controller
 {
     function index()
     {
-        $dataCasis = Casis::all();
-        return view('admin.casis', compact('dataCasis'));
+        $jurusan = Jurusan::all();
+        $dataCasis = Casis::with('jurusan')->latest()->get();
+        return view('admin.casis', compact( 'jurusan', 'dataCasis'));
     }
 
     function create()
     {
-        return view('admin.tambah_casis');
+        $jurusan = Jurusan::all();
+        return view('admin.tambah_casis', compact('jurusan'));
     }
 
     function store(Request $request)
@@ -29,7 +32,7 @@ class CasisController extends Controller
             'alamat' => 'required|string',
             'jenis_kelamin' => 'required|in:laki-laki,perempuan',
             'asal_sekolah' => 'required|string|max:255',
-            'jurusan' => 'required|in:Teknik Komputer dan Jaringan,Rekayasa Perangkat Lunak,Multimedia',
+            'jurusan_id' => 'required|',
 
         ]);
 
@@ -43,21 +46,24 @@ class CasisController extends Controller
         $casis->alamat = $request->alamat;
         $casis->jenis_kelamin = $request->jenis_kelamin;
         $casis->asal_sekolah = $request->asal_sekolah;
-        $casis->jurusan = $request->jurusan;
+        $casis->jurusan_id = $request->jurusan_id;
 
         $casis->save();
 
         return redirect()->route('casis.index')->with('success', 'Data calon siswa berhasil ditambahkan.');
     }
 
-    function edit(string $id){
+    function edit(string $id)
+    {
 
         $casis = Casis::findOrFail($id);
-        return view('admin.edit', compact('casis'));
+        $listJurusan = Jurusan::all();
+        return view('admin.edit', compact('casis', 'listJurusan'));
     }
 
-    function update(Request $request, $id){
-        
+    function update(Request $request, $id)
+    {
+
         $casis = Casis::findOrFail($id);
 
         $validator = Validator::make($request->all(), [
@@ -66,7 +72,7 @@ class CasisController extends Controller
             'alamat' => 'required|string',
             'jenis_kelamin' => 'required|in:laki-laki,perempuan',
             'asal_sekolah' => 'required|string|max:255',
-            'jurusan' => 'required|in:Teknik Komputer dan Jaringan,Rekayasa Perangkat Lunak,Multimedia',
+            'jurusan_id' => 'required|',
 
         ]);
 
@@ -79,14 +85,14 @@ class CasisController extends Controller
         $casis->alamat = $request->alamat;
         $casis->jenis_kelamin = $request->jenis_kelamin;
         $casis->asal_sekolah = $request->asal_sekolah;
-        $casis->jurusan = $request->jurusan;
+        $casis->jurusan_id = $request->jurusan_id;
         $casis->save();
 
         return redirect()->route('casis.index')->with('success', 'Data calon siswa berhasil diperbarui.');
-        
     }
 
-    function destroy(string $id){
+    function destroy(string $id)
+    {
         $casis = Casis::findOrFail($id);
         $casis->delete();
 

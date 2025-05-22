@@ -1,0 +1,55 @@
+<div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="card-title">Info Pendaftaran</h4>
+                    </div>
+
+                    @if ($pendaftaran->isEmpty())
+                        <p class="alert alert-danger text-center">Belum ada info pendaftaran.</p>
+                    @else
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>NO</th>
+                                        <th>NISN</th>
+                                        <th>NAMA LENGKAP</th>
+                                        <th>ASAL SEKOLAH</th>
+                                        <th>JENIS KELAMIN</th>
+                                        <th>JURUSAN</th>
+                                        <th>WHAATSAPP</th>
+                                        <th>AKSI</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $no = 1;
+                                    @endphp
+                                    @foreach ($pendaftaran as $p)
+                                        <tr>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $p->nisn }}</td>
+                                            <td>{{ $p->nama_lengkap }}</td>
+                                            <td>{{ $p->asal_sekolah }}</td>
+                                            <td>{{ $p->jenis_kelamin }}</td>
+                                            <td>{{ $p->jurusan->nama_jurusan }}</td>
+                                            <td>{{ $p->no_hp }}</td>
+                                            <td>
+                                                <a href="" class="btn btn-sm btn-success"><i class="bi bi-telephone"></i></a>
+                                                <form action="{{ route('pendaftaran.destroy', $p->id) }}" method="POST" class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger"
+                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i
+                                                            class="bi bi-trash"></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @endif
+
+                </div>
+            </div>

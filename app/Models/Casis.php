@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Casis extends Model
 {
+    use HasFactory;
+
     protected $table = 'casis';
 
     protected $fillable = [
@@ -16,4 +19,9 @@ class Casis extends Model
         'asal_sekolah',
         'jurusan'
     ];
+
+    public function jurusan()
+    {
+        return $this->belongsTo(Jurusan::class);
+    }
 }

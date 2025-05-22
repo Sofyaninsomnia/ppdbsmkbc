@@ -55,7 +55,7 @@
           <li><a href="#jurusan">Jurusan</a></li>
           <li><a href="#fasilitas">Fasilitas</a></li>
           <li><a href="#contact">Kontak</a></li>
-          <li><a href="{{ route('auth') }}">Login</a></li>
+          <li><a href="{{ route('login') }}">Login</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>

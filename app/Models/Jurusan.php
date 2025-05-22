@@ -24,4 +24,10 @@ class Jurusan extends Model
     {
         return $this->hasOne(Pendaftaran::class);
     }
+
+    public function casis()
+    {
+        return $this->hasOne(Casis::class);
+    }
+
 }

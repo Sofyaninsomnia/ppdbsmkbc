@@ -23,7 +23,7 @@
                                     <th>JENIS KELAMIN</th>
                                     <th>JURUSAN</th>
                                     <th>ASAL SEKOLAH</th>
-                                    <th>AKSI</th> 
+                                    <th>AKSI</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -37,14 +37,24 @@
                                         <td>{{ $casis->tgl_lahir }}</td>
                                         <td>{{ $casis->alamat }}</td>
                                         <td>{{ $casis->jenis_kelamin }}</td>
-                                        <td>{{ $casis->jurusan }}</td>
+                                        <td>
+                                            @if ($casis->jurusan)
+                                                {{ $casis->jurusan->nama_jurusan }}
+                                            @else
+                                                Belum Ditentukan
+                                            @endif
+                                        </td>
                                         <td>{{ $casis->asal_sekolah }}</td>
                                         <td>
-                                            <a href="{{ route('casis.edit', $casis->id) }}" class="btn btn-sm btn-info"><i class="bi bi-pen"></i></a>
-                                            <form action="{{ route('casis.destroy', $casis->id) }}" method="POST" class="d-inline">
+                                            <a href="{{ route('casis.edit', $casis->id) }}" class="btn btn-sm btn-info"><i
+                                                    class="bi bi-pen"></i></a>
+                                            <form action="{{ route('casis.destroy', $casis->id) }}" method="POST"
+                                                class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="bi bi-trash"></i></button>
+                                                <button type="submit" class="btn btn-sm btn-danger"
+                                                    onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i
+                                                        class="bi bi-trash"></i></button>
                                             </form>
                                         </td>
                                     </tr>
@@ -62,7 +72,7 @@
 
     </main>
     <script>
-        @if(session('success'))
+        @if (session('success'))
             Swal.fire({
                 icon: 'success',
                 title: 'Berhasil!',
@@ -72,5 +82,4 @@
             })
         @endif
     </script>
-
 @endsection

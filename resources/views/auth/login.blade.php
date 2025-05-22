@@ -42,12 +42,12 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('login') }}" method="POST" class="form">
+        <form action="{{ route('proses_login') }}" method="POST" class="form">
             @csrf
 
             <div class="container">
                 <input required type="text" name="email" value="{{ old('email') }}" class="input" autocomplete="off">
-                <label class="label">Username</label>
+                <label class="label">Email</label>
             </div>
             <div class="container">
                 <input required type="password" name="password" class="input" autocomplete="off">
