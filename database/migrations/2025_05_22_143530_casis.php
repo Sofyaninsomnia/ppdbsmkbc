@@ -17,10 +17,11 @@ return new class extends Migration
             $table->string('nama');
             $table->string('tgl_lahir');
             $table->string('alamat');
-            $table->enum('jenis_kelamin', ['laki_laki', 'perempuan']);
+            $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
             $table->unsignedBigInteger('jurusan_id');
             $table->string('asal_sekolah');
-            $table->string('foto')->nullable()->change();
+            $table->string('no_hp');
+            $table->string('foto')->nullable();
             $table->timestamps();
 
             $table->foreign('jurusan_id')->references('id')->on('jurusan')->onDelete('cascade')->onUpdate('cascade');

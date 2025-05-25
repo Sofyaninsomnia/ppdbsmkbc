@@ -43,7 +43,7 @@
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#data-nav" data-bs-toggle="collapse" href="#"
                 aria-expanded="false">
-                <i class="bi bi-people"></i><span>Data pendaftar</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-clipboard-data"></i><span>Data</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="data-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav" style="">
                 <li class="nav-item">
