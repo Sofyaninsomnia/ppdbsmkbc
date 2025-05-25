@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pendaftaran Tahap Pertama</title>
-    <link rel="stylesheet" href="{{ asset('assets/voler/css/bootstrap.css')}}">
-    <link rel="shortcut icon" href="{{ asset('assets/img/bc.png')}}" type="image/x-icon">
-    <link rel="stylesheet" href="{{ asset('assets/voler/css/app.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/voler/css/bootstrap.css') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/img/bc.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ asset('assets/voler/css/app.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         .btn-primary:hover {
@@ -40,13 +40,13 @@
                 <div class="col-md-7 col-sm-12 mx-auto">
                     <div class="card pt-4">
                         <div class="card-body">
-                            <div class="text-center mb-5">
-                                <img src="{{ asset('assets/img/bc.png')}}" height="48" class="mb-4">
+                            <div class="text-center mb-5">  
+                                <img src="{{ asset('assets/img/bc.png') }}" height="48" class="mb-4">
                                 <h3>SMK BINA CENDEKIA CIREBON</h3>
                                 <p>Pendaftaran online, info selengkapnya akan dihubungi oleh admin.</p>
                             </div>
                             <form action="{{ route('daftar.add_registrasi') }}" method="POST" class="needs-validation"
-                                novalidate>
+                                enctype="multipart/form-data" novalidate>
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6 col-12">
@@ -54,7 +54,7 @@
                                             <label for="nisn">NISN</label>
                                             <input type="text"
                                                 class="form-control @error('nisn') is-invalid @enderror" name="nisn"
-                                                value="{{ old('nisn') }}" required>
+                                                value="{{ old('nisn') }}" placeholder="Masukkan nisn yang valid" required>
                                             @error('nisn')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -65,7 +65,7 @@
                                             <label for="nama_lengkap">Nama Lengkap</label>
                                             <input type="text"
                                                 class="form-control @error('nama_lengkap') is-invalid @enderror"
-                                                name="nama_lengkap" value="{{ old('nama_lengkap') }}" required>
+                                                name="nama_lengkap" value="{{ old('nama_lengkap') }}" placeholder="Nama lengkap calon siswa" required>
                                             @error('nama_lengkap')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -76,7 +76,7 @@
                                             <label for="asal_sekolah">Asal Sekolah</label>
                                             <input type="text"
                                                 class="form-control @error('asal_sekolah') is-invalid @enderror"
-                                                name="asal_sekolah" value="{{ old('asal_sekolah') }}" required>
+                                                name="asal_sekolah" value="{{ old('asal_sekolah') }}" placeholder="Asal sekolah" required>
                                             @error('asal_sekolah')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -123,8 +123,20 @@
                                             <label for="no_hp">No WhatsApp Aktif</label>
                                             <input type="text"
                                                 class="form-control @error('no_hp') is-invalid @enderror" name="no_hp"
-                                                value="{{ old('no_hp') }}" required>
+                                                value="{{ old('no_hp') }}" placeholder="Harap masukkan nomor yang aktif " required>
                                             @error('no_hp')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="pas_foto">Pas foto</label>
+                                            <small>File maximal 3mb</small>
+                                            <input type="file"
+                                                class="form-control @error('pas_foto') is-invalid @enderror"
+                                                name="pas_foto" value="{{ old('pas_foto') }}" required>
+                                            @error('pas_foto')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -173,9 +185,9 @@
             });
         @endif
     </script>
-    <script src="{{ asset('assets/voler/js/feather-icons/feather.min.js')}}"></script>
-    <script src="{{ asset('assets/voler/js/app.js')}}"></script>
-    <script src="{{ asset('assets/voler/js/main.js')}}"></script>
+    <script src="{{ asset('assets/voler/js/feather-icons/feather.min.js') }}"></script>
+    <script src="{{ asset('assets/voler/js/app.js') }}"></script>
+    <script src="{{ asset('assets/voler/js/main.js') }}"></script>
     <script>
         feather.replace();
         (function() {

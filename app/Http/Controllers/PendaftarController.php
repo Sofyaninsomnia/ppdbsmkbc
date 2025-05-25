@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Jurusan;
 use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 
@@ -73,6 +74,7 @@ class PendaftarController extends Controller
             'jenis_kelamin' => 'required|in:laki-laki,perempuan',
             'jurusan_id'    => 'required|integer|exists:jurusan,id',
             'no_hp'         => 'required|string|min:10|max:15',
+            'pas_foto'      => 'required|image|mimes:jpg,png,jpeg|max:3048',
         ];
 
         $messages = [
@@ -95,6 +97,10 @@ class PendaftarController extends Controller
             'no_hp.string'          => 'No HP harus berupa teks',
             'no_hp.min'             => 'No HP minimal 10 karakter',
             'no_hp.max'             => 'No HP maksimal 15 karakter',
+            'pas_foto.required'     => 'Foto harus di isi',
+            'pas_foto.image'        => 'Foto harus berupa image',
+            'pas_foto.mimes'        => 'Invalid image type',
+            'pas_foto.max'          => 'Ukuran file terlalu besar, maximal 3MB',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -103,7 +109,13 @@ class PendaftarController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        DB::transaction(function () use ($request, &$pendaftaran_baru) {
+        try {
+            $fotopath = $request->file('pas_foto')->store('pas_foto', 'public');
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput()->withErrors(['pas_foto'  => 'Gagal mengunggah foto: ' . $e->getMessage()]);
+        }
+
+        DB::transaction(function () use ($request, $fotopath, &$pendaftaran_baru) {
             $pendaftaran_baru = Pendaftaran::create([
                 'nisn' => $request->nisn,
                 'nama_lengkap' => $request->nama_lengkap,
@@ -111,6 +123,7 @@ class PendaftarController extends Controller
                 'jenis_kelamin' => $request->jenis_kelamin,
                 'jurusan_id' => $request->jurusan_id,
                 'no_hp' => $request->no_hp,
+                'pas_foto' => $fotopath,
             ]);
 
             $jumlahPendaftar = Pendaftaran::count();
@@ -119,6 +132,9 @@ class PendaftarController extends Controller
                 $pendaftarTerlama = Pendaftaran::orderBy('created_at', 'asc')->first();
 
                 if ($pendaftarTerlama) {
+                    if ($pendaftarTerlama->pas_foto) {
+                        Storage::disk('public')->delete($pendaftarTerlama->pas_foto);
+                    }
                     $pendaftarTerlama->delete();
                 }
             }

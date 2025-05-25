@@ -111,8 +111,8 @@
 
         .pas-foto-area {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 85px;
+            right: 40px;
             width: 100px;
             height: 120px;
             border: 1px dashed #ccc;
@@ -176,7 +176,11 @@
         <hr>
 
         <div class="pas-foto-area">
-            <img src="aa.jpg" alt="pas foto">
+            @if (isset($pendaftaran->pas_foto) && $pendaftaran->pas_foto)
+            <img src="{{ asset('storage/' . $pendaftaran->pas_foto) }}" alt="pas foto">
+            @else
+                Pas foto 3x4
+            @endif
         </div>
 
         <div class="data-item">
@@ -212,12 +216,12 @@
             <div class="signature-box">
                 <p>Calon siswa</p>
                 <div class="signature-line"></div>
-                <p class="signature-label">({{ $pendaftaran->nama_lengkap }})</p>
+                <p class="signature-label">( {{ $pendaftaran->nama_lengkap }} )</p>
             </div>
             <div class="signature-box">
                 <p>Admin PPDB</p>
                 <div class="signature-line"></div>
-                <p class="signature-label">Sofyan Insomnia</p>
+                <p class="signature-label">( Pengurus PPDB )</p>
             </div>
         </div>
 

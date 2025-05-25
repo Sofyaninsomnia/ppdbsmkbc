@@ -18,6 +18,7 @@ class Pendaftaran extends Model
         'jenis_kelamin',
         'jurusan_id',
         'no_hp',
+        'pas_foto',
     ];
 
     public function jurusan() {

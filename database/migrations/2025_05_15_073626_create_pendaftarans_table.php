@@ -19,7 +19,7 @@ return new class extends Migration
             $table->enum('jenis_kelamin', ['laki_laki', 'perempuan']);
             $table->unsignedBigInteger('jurusan_id');
             $table->string('no_hp');
-            $table->string('pas_foto')->nullable();
+            $table->string('pas_foto')->nullable()->change();
             $table->timestamps();
 
             $table->foreign('jurusan_id')->references('id')->on('jurusan')->onDelete('cascade')->onUpdate('cascade');
