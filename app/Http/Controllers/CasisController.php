@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Casis;
 use App\Models\Jurusan;
+use App\Models\Ortu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Storage;
@@ -44,7 +45,12 @@ class CasisController extends Controller
     function create()
     {
         $jurusan = Jurusan::all();
-        return view('admin.tambah_casis', compact('jurusan'));
+        $allOrtu = Ortu::all();
+
+        $ayah = $allOrtu->where('jenis_kelamin', 'laki-laki');
+        $ibu = $allOrtu->where('jenis_kelamin', 'perempuan');
+
+        return view('admin.tambah_casis', compact('jurusan', 'ayah', 'ibu'));
     }
 
     function store(Request $request)
@@ -55,9 +61,12 @@ class CasisController extends Controller
             'nama' => 'required|string|max:255',
             'tgl_lahir' => 'required|date',
             'alamat' => 'required|string',
+            'agama'   => 'required|string',
+            'ayah_id'   => 'required|',
+            'ibu_id'   =>  'required|',
             'jenis_kelamin' => 'required|in:laki-laki,perempuan',
             'asal_sekolah' => 'required|string|max:255',
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:20048',
             'no_hp'         => 'required|string|min:10|max:15',
             'jurusan_id' => 'required|',
 
@@ -74,6 +83,9 @@ class CasisController extends Controller
         $casis->nama = $request->nama;
         $casis->tgl_lahir = $request->tgl_lahir;
         $casis->alamat = $request->alamat;
+        $casis->agama = $request->agama;
+        $casis->ayah_id = $request->ayah_id;
+        $casis->ibu_id = $request->ibu_id;
         $casis->jenis_kelamin = $request->jenis_kelamin;
         $casis->asal_sekolah = $request->asal_sekolah;
         $casis->foto = $fotopath;
@@ -87,7 +99,7 @@ class CasisController extends Controller
 
     function show(string $id)
     {
-        $casis = Casis::findOrFail($id);
+        $casis = Casis::with(['ayah', 'ibu', 'jurusan'])->findOrFail($id);
         $listJurusan = Jurusan::all();
         return view('admin.detail_casis', compact('casis', 'listJurusan'));
     }

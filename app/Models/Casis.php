@@ -26,4 +26,21 @@ class Casis extends Model
     {
         return $this->belongsTo(Jurusan::class);
     }
+
+    public function ortu()
+    {
+        return $this->belongsTo(Ortu::class);
+    }
+
+    public function ayah()
+    {
+        return $this->belongsTo(Ortu::class, 'ayah_id');
+    }
+
+    public function ibu()
+    {
+        return $this->belongsTo(Ortu::class, 'ibu_id');
+    }
+
+
 }

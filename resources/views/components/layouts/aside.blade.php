@@ -53,7 +53,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="dropdown-item @activeclass('casis')" href="/casis">
+                    <a class="dropdown-item @activeclass('ortu')" href="/ortu">
                         <i class="bi bi-circle"></i>
                         <span>Data ortu</span>
                     </a>

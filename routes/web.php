@@ -6,6 +6,7 @@ use App\Http\Controllers\CasisController;
 use App\Http\Controllers\Home; 
 use App\Http\Controllers\Info_Jurusan;
 use App\Http\Controllers\JurusanController;
+use App\Http\Controllers\OrtuController;
 use App\Http\Controllers\PendaftarController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,7 @@ Route::get('daftar/show_print_form/{id}', [PendaftarController::class, 'show_pri
 Route::middleware('auth')->group(function () {
     Route::resource('pendaftaran', PendaftarController::class)->except(['registrasi', 'add_registrasi']);
     Route::resource('jurusan', JurusanController::class);
+    Route::resource('ortu', OrtuController::class);
     Route::resource('info_jurusan', Info_Jurusan::class);
     Route::get('admin', [AdminController::class, 'index'])->name('admin.index');
     Route::resource('casis', CasisController::class);

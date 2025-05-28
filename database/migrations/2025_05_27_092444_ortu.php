@@ -11,8 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ortu', function (Blueprint $table) {
+        Schema::table('ortu', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('nik')->unique();
+            $table->string('nama');
+            $table->string('no_hp');
+            $table->string('pekerjaan');
+            $table->enum('jenis_kelamin', ['laki-Laki', 'perempuan']);
+            $table->text('alamat');
             $table->timestamps();
         });
     }
@@ -22,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ortus');
+        //
     }
 };

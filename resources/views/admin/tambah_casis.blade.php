@@ -60,6 +60,17 @@
                                 </div>
 
                                 <div class="row mb-3">
+                                    <label for="agama" class="col-md-4 col-lg-3 col-form-label">Agama</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input type="text" class="form-control @error('agama') is-invalid @enderror"
+                                            id="agama" name="agama" value="{{ old('agama') }}" required>
+                                        @error('agama')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
                                     <label for="jenis_kelamin" class="col-md-4 col-lg-3 col-form-label">Jenis
                                         Kelamin</label>
                                     <div class="col-md-8 col-lg-9">
@@ -74,6 +85,44 @@
                                             </option>
                                         </select>
                                         @error('jenis_kelamin')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="ayah_id" class="col-md-4 col-lg-3 col-form-label">Nama ayah</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <select name="ayah_id" id="ayah_id"
+                                            class="form-select @error('ayah_id') is-invalid @enderror">
+                                            <option value="">-- Nama ayah --</option>
+                                            @foreach ($ayah as $o)
+                                                <option value="{{ $o->id }}"
+                                                    {{ old('ayah_id') == $o->id ? 'selected' : '' }}>
+                                                    {{ $o->nama }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('ayah_id')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="ibu_id" class="col-md-4 col-lg-3 col-form-label">Nama ibu</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <select name="ibu_id" id="ibu_id"
+                                            class="form-select @error('ibu_id') is-invalid @enderror">
+                                            <option value="">-- Nama ibu --</option>
+                                            @foreach ($ibu as $j)
+                                                <option value="{{ $j->id }}"
+                                                    {{ old('ibu_id') == $j->id ? 'selected' : '' }}>
+                                                    {{ $j->nama }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('ibu_id')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -95,10 +144,8 @@
                                 <div class="row mb-3">
                                     <label for="foto" class="col-md-4 col-lg-3 col-form-label">Pas foto</label>
                                     <div class="col-md-8 col-lg-9">
-                                        <input type="file"
-                                            class="form-control @error('foto') is-invalid @enderror"
-                                            id="foto" name="foto" value="{{ old('foto') }}"
-                                            required>
+                                        <input type="file" class="form-control @error('foto') is-invalid @enderror"
+                                            id="foto" name="foto" value="{{ old('foto') }}" required>
                                         @error('foto')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -108,10 +155,8 @@
                                 <div class="row mb-3">
                                     <label for="no_hp" class="col-md-4 col-lg-3 col-form-label">No Whaatsapp</label>
                                     <div class="col-md-8 col-lg-9">
-                                        <input type="number"
-                                            class="form-control @error('no_hp') is-invalid @enderror"
-                                            id="no_hp" name="no_hp" value="{{ old('no_hp') }}"
-                                            required>
+                                        <input type="number" class="form-control @error('no_hp') is-invalid @enderror"
+                                            id="no_hp" name="no_hp" value="{{ old('no_hp') }}" required>
                                         @error('no_hp')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror

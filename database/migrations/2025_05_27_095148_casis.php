@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('nama');
             $table->string('tgl_lahir');
             $table->string('alamat');
+            $table->string('agama');
+            $table->unsignedBigInteger('ayah_id');
+            $table->unsignedBigInteger('ibu_id');
             $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
             $table->unsignedBigInteger('jurusan_id');
             $table->string('asal_sekolah');
@@ -25,6 +28,8 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('jurusan_id')->references('id')->on('jurusan')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('ayah_id')->references('id')->on('ortu')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('ibu_id')->references('id')->on('ortu')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

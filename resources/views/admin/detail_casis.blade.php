@@ -99,6 +99,14 @@
                                             <div class="col-lg-9 col-md-8">: {{ $casis->no_hp }}</div>
                                         </div>
                                     @endif
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label">Ayah kandung</div>
+                                        <div class="col-lg-9 col-md-8">: {{ $casis->ayah->nama ?? '-' }}</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label">Ibu kandung</div>
+                                        <div class="col-lg-9 col-md-8">: {{ $casis->ibu->nama ?? '-' }}</div>
+                                    </div>
                                     {{-- Tambahkan baris-baris lain untuk data casis yang ingin Anda tampilkan --}}
                                     {{-- Contoh:
                                     <div class="row">
