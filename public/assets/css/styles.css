@@ -190,6 +190,11 @@ h1 {
     color: #717171;
 }
 
+p {
+    text-align: center;
+    color: #717171;
+}
+
 .form-container button:active {
     scale: 0.95;
 }

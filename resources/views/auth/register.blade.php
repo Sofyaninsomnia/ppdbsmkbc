@@ -31,7 +31,8 @@
         </div>
     </div>
     <div class="form-container">
-        <h1>Register PPDB SMK BC</h1>
+        <h1>Buat akun</h1>
+        <p>Untuk pendaftaran tahap selanjutnya buat akun terlebih dahulu</p>
         @if ($errors->any())
             <div>
                 <strong>Whoops! Ada beberapa masalah dengan input Anda.</strong>

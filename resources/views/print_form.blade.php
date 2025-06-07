@@ -227,7 +227,7 @@
 
         <div class="print-button-area">
             <button onclick="window.print()" class="btn btn-primary btn-print">Cetak Sekarang</button>
-            <a href="{{ route('daftar.registrasi') }}" class="btn btn-secondary btn-back">Kembali ke Form Pendaftaran</a>
+            <a href="{{ route('register') }}" class="btn btn-secondary btn-back">Buat akun </a>
         </div>
     </div>
 
