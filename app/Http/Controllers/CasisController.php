@@ -66,7 +66,7 @@ class CasisController extends Controller
             'ibu_id'   =>  'required|',
             'jenis_kelamin' => 'required|in:laki-laki,perempuan',
             'asal_sekolah' => 'required|string|max:255',
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:20048',
+            'foto' => 'required|image|mimes:jpeg,png,jpg|max:20048',
             'no_hp'         => 'required|string|min:10|max:15',
             'jurusan_id' => 'required|',
 
@@ -129,7 +129,7 @@ class CasisController extends Controller
             'alamat' => 'required|string',
             'jenis_kelamin' => 'required|in:laki-laki,perempuan',
             'asal_sekolah' => 'required|string|max:255',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:4048',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:4048',
             'no_hp' => 'required|string|min:10|max:15',
             'jurusan_id' => 'required|exists:jurusan,id',
         ]);

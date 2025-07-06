@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MASUK. SEKARANG.</title>
+    <title>Login | PPDBSMK BC</title>
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
     <link href="{{ asset('assets/img/bc.png') }}" rel="icon">
     <link href="{{ asset('assets/img/bc.png') }}" rel="apple-touch-icon">

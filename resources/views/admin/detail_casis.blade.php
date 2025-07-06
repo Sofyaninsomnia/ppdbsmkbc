@@ -16,7 +16,8 @@
                     <li class="breadcrumb-item active">Detail Casis</li>
                 </ol>
             </nav>
-        </div><section class="section profile">
+        </div>
+        <section class="section profile">
             <div class="row">
                 <div class="col-xl-4">
                     <div class="card">

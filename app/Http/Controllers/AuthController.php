@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use Illuminate\Validation\ValidationData;
 use Illuminate\Validation\ValidationException;
+use App\Models\Pendaftaran;
 
 class AuthController extends Controller
 {
@@ -60,16 +61,26 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
+            'kode_aktivasi' => 'required|exists:pendaftaran,kode_aktivasi',
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
         ]);
+
+        $pendaftaran = Pendaftaran::where('kode_aktivasi', $request->kode_aktivasi)->first();
+        if ($pendaftaran->user_id !== null) {
+            return back()->withErrors(['kode_aktivasi' => 'Kode aktivasi ini sudah digunakan.']);
+        }
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        $pendaftaran->user_id = $user->id;
+        $pendaftaran->save(); 
+
 
         Auth::login($user);
 

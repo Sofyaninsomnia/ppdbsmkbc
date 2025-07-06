@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MASUK. SEKARANG.</title>
+    <title>Sign up | PPDBSMK BC</title>
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
     <link href="{{ asset('assets/img/bc.png') }}" rel="icon">
     <link href="{{ asset('assets/img/bc.png') }}" rel="apple-touch-icon">
@@ -46,6 +46,10 @@
         <form action="{{ route('register') }}" method="POST" class="form">
             @csrf
 
+            <div class="container">
+                <input required type="text" name="kode_aktivasi" value="{{ old('kode_aktivasi') }}" class="input" autocomplete="off">
+                <label class="label">Kode aktivasi</label>
+            </div>
             <div class="container">
                 <input required type="text" name="name" value="{{ old('name') }}" class="input" autocomplete="off">
                 <label class="label">Username</label>

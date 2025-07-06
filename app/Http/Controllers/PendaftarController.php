@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class PendaftarController extends Controller
 {
@@ -66,79 +67,82 @@ class PendaftarController extends Controller
     }
 
     function add_registrasi(Request $request)
-    {
-        $rules = [
-            'nisn'          => 'required|numeric|digits:10|unique:pendaftaran,nisn',
-            'nama_lengkap'  => 'required|string|min:4|max:100',
-            'asal_sekolah'  => 'required|string',
-            'jenis_kelamin' => 'required|in:laki-laki,perempuan',
-            'jurusan_id'    => 'required|integer|exists:jurusan,id',
-            'no_hp'         => 'required|string|min:10|max:15',
-            'pas_foto'      => 'required|image|mimes:jpg,png,jpeg|max:3048',
-        ];
+{
+    $rules = [
+        'nisn'          => 'required|numeric|digits:10|unique:pendaftaran,nisn',
+        'nama_lengkap'  => 'required|string|min:4|max:100',
+        'asal_sekolah'  => 'required|string',
+        'jenis_kelamin' => 'required|in:laki-laki,perempuan',
+        'jurusan_id'    => 'required|integer|exists:jurusan,id',
+        'no_hp'         => 'required|string|min:10|max:15',
+        'pas_foto'      => 'required|image|mimes:jpg,png,jpeg|max:3048',
+    ];
 
-        $messages = [
-            'nisn.unique'           => 'NISN sudah terdaftar.',
-            'nisn.required'         => 'NISN wajib diisi.',
-            'nisn.numeric'          => 'NISN harus berupa angka.',
-            'nisn.digits'           => 'NISN harus terdiri dari 10 digit.',
-            'nama_lengkap.required' => 'Nama Lengkap wajib diisi.',
-            'nama_lengkap.string'   => 'Nama Lengkap harus berupa teks.',
-            'nama_lengkap.min'      => 'Nama Lengkap minimal 4 karakter.',
-            'nama_lengkap.max'      => 'Nama Lengkap maksimal 100 karakter.',
-            'asal_sekolah.required' => 'Asal Sekolah wajib diisi.',
-            'asal_sekolah.string'   => 'Asal Sekolah harus berupa teks.',
-            'jenis_kelamin.required' => 'Jenis Kelamin wajib diisi.',
-            'jenis_kelamin.in'      => 'Jenis Kelamin tidak valid.',
-            'jurusan_id.required'   => 'Jurusan wajib diisi.',
-            'jurusan_id.integer'    => 'Jurusan harus berupa angka.',
-            'jurusan_id.exists'     => 'Jurusan tidak valid.',
-            'no_hp.required'        => 'No HP wajib diisi',
-            'no_hp.string'          => 'No HP harus berupa teks',
-            'no_hp.min'             => 'No HP minimal 10 karakter',
-            'no_hp.max'             => 'No HP maksimal 15 karakter',
-            'pas_foto.required'     => 'Foto harus di isi',
-            'pas_foto.image'        => 'Foto harus berupa image',
-            'pas_foto.mimes'        => 'Invalid image type',
-            'pas_foto.max'          => 'Ukuran file terlalu besar, maximal 3MB',
-        ];
+    $messages = [
+        'nisn.unique'           => 'NISN sudah terdaftar.',
+        'nisn.required'         => 'NISN wajib diisi.',
+        'nisn.numeric'          => 'NISN harus berupa angka.',
+        'nisn.digits'           => 'NISN harus terdiri dari 10 digit.',
+        'nama_lengkap.required' => 'Nama Lengkap wajib diisi.',
+        'nama_lengkap.string'   => 'Nama Lengkap harus berupa teks.',
+        'nama_lengkap.min'      => 'Nama Lengkap minimal 4 karakter.',
+        'nama_lengkap.max'      => 'Nama Lengkap maksimal 100 karakter.',
+        'asal_sekolah.required' => 'Asal Sekolah wajib diisi.',
+        'asal_sekolah.string'   => 'Asal Sekolah harus berupa teks.',
+        'jenis_kelamin.required'=> 'Jenis Kelamin wajib diisi.',
+        'jenis_kelamin.in'      => 'Jenis Kelamin tidak valid.',
+        'jurusan_id.required'   => 'Jurusan wajib diisi.',
+        'jurusan_id.integer'    => 'Jurusan harus berupa angka.',
+        'jurusan_id.exists'     => 'Jurusan tidak valid.',
+        'no_hp.required'        => 'No HP wajib diisi',
+        'no_hp.string'          => 'No HP harus berupa teks',
+        'no_hp.min'             => 'No HP minimal 10 karakter',
+        'no_hp.max'             => 'No HP maksimal 15 karakter',
+        'pas_foto.required'     => 'Foto harus diisi',
+        'pas_foto.image'        => 'Foto harus berupa image',
+        'pas_foto.mimes'        => 'Jenis file tidak didukung',
+        'pas_foto.max'          => 'Ukuran file terlalu besar, maksimal 3MB',
+    ];
 
-        $validator = Validator::make($request->all(), $rules, $messages);
+    $validator = Validator::make($request->all(), $rules, $messages);
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
+    if ($validator->fails()) {
+        return redirect()->back()->withErrors($validator)->withInput();
+    }
 
-        try {
-            $fotopath = $request->file('pas_foto')->store('pas_foto', 'public');
-        } catch (\Exception $e) {
-            return redirect()->back()->withInput()->withErrors(['pas_foto'  => 'Gagal mengunggah foto: ' . $e->getMessage()]);
-        }
+    try {
+        $fotopath = $request->file('pas_foto')->store('pas_foto', 'public');
+    } catch (\Exception $e) {
+        return redirect()->back()->withInput()->withErrors([
+            'pas_foto' => 'Gagal mengunggah foto: ' . $e->getMessage()
+        ]);
+    }
 
-        DB::transaction(function () use ($request, $fotopath, &$pendaftaran_baru) {
-            $pendaftaran_baru = Pendaftaran::create([
-                'nisn' => $request->nisn,
-                'nama_lengkap' => $request->nama_lengkap,
-                'asal_sekolah' => $request->asal_sekolah,
-                'jenis_kelamin' => $request->jenis_kelamin,
-                'jurusan_id' => $request->jurusan_id,
-                'no_hp' => $request->no_hp,
-                'pas_foto' => $fotopath,
-            ]);
+    $kode = Str::upper(Str::random(8)); 
 
-            $jumlahPendaftar = Pendaftaran::count();
+    DB::transaction(function () use ($request, $fotopath, $kode, &$pendaftaran_baru) {
+        $pendaftaran_baru = Pendaftaran::create([
+            'nisn'           => $request->nisn,
+            'nama_lengkap'   => $request->nama_lengkap,
+            'asal_sekolah'   => $request->asal_sekolah,
+            'jenis_kelamin'  => $request->jenis_kelamin,
+            'jurusan_id'     => $request->jurusan_id,
+            'no_hp'          => $request->no_hp,
+            'pas_foto'       => $fotopath,
+            'kode_aktivasi'  => $kode
+        ]);
 
-            if ($jumlahPendaftar > self::MAX_PENDAFTAR) {
-                $pendaftarTerlama = Pendaftaran::orderBy('created_at', 'asc')->first();
-
-                if ($pendaftarTerlama) {
-                    if ($pendaftarTerlama->pas_foto) {
-                        Storage::disk('public')->delete($pendaftarTerlama->pas_foto);
-                    }
-                    $pendaftarTerlama->delete();
+        $jumlahPendaftar = Pendaftaran::count();
+        if ($jumlahPendaftar > self::MAX_PENDAFTAR) {
+            $pendaftarTerlama = Pendaftaran::orderBy('created_at', 'asc')->first();
+            if ($pendaftarTerlama) {
+                if ($pendaftarTerlama->pas_foto) {
+                    Storage::disk('public')->delete($pendaftarTerlama->pas_foto);
                 }
+                $pendaftarTerlama->delete();
             }
-        });
+        }
+    });
 
         return redirect()->route('daftar.show_print_form', ['id' => $pendaftaran_baru->id])
                          ->with('success', 'Pendaftaran berhasil! Silakan cetak data Anda.')

@@ -211,6 +211,10 @@
             <span class="data-label">Tanggal Daftar:</span>
             <span class="data-value">{{ \Carbon\Carbon::parse($pendaftaran->created_at)->format('d F Y ') }}</span>
         </div>
+        <div class="data-item">
+            <span class="data-label">Kode Aktivasi:</span>
+            <span class="data-value">{{ $pendaftaran->kode_aktivasi }}</span>
+        </div>
         
         <div class="signature-area">
             <div class="signature-box">

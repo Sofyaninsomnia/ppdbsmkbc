@@ -19,10 +19,17 @@ class Pendaftaran extends Model
         'jurusan_id',
         'no_hp',
         'pas_foto',
+        'kode_aktivasi',
     ];
 
-    public function jurusan() {
+    public function jurusan()
+    {
 
         return $this->belongsTo(Jurusan::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

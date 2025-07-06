@@ -138,4 +138,14 @@ class Info_Jurusan extends Controller
 
         return redirect()->route('info_jurusan.index')->with(['success' => 'Data berhasil di update']);
     }
+
+    public function destroy(string $id){
+
+        $info_jurusan = InfoJurusan::findOrFail($id);
+        $info_jurusan->delete();
+        Storage::disk('public')->delete($info_jurusan->logo);
+        Storage::disk('public')->delete($info_jurusan->cover);
+
+        return redirect()->route('info_jurusan.index')->with(['success' => 'Data berhasil dihapus!']);
+    }
 }

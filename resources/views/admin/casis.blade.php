@@ -6,7 +6,15 @@
     <x-layouts.aside></x-layouts.aside>
 
     <main id="main" class="main">
-
+        <div class="pagetitle">
+            <h1>Data Calon Siswa</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Home</a></li>
+                    <li class="breadcrumb-item active">Data Casis</li>
+                </ol>
+            </nav>
+        </div>
         <section class="section">
             <div class="card">
                 <div class="card-body">
