@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CasisController;
 use App\Http\Controllers\Home; 
@@ -8,9 +7,12 @@ use App\Http\Controllers\Info_Jurusan;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\OrtuController;
 use App\Http\Controllers\PendaftarController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\User\Calon_siswa;
 use Illuminate\Support\Facades\Route;
 
-Route::resource('home', Home::class);
+Route::get('/', [Home::class, 'index'])->name('home');
+Route::get('/detail_jurusan/{id}', [Home::class, 'show'])->name('home.show');
 
 Route::get('auth', [AuthController::class, 'formLogin'])->name('login');
 Route::post('login', [AuthController::class, 'login'])->name('proses_login');
@@ -25,11 +27,15 @@ Route::post('daftar/add_registrasi', [PendaftarController::class, 'add_registras
 Route::get('daftar/show_print_form/{id}', [PendaftarController::class, 'show_print_form'])->name('daftar.show_print_form');
 
 Route::middleware('auth')->group(function () {
+    Route::get('dashboard', [DashboardController::class, 'user_dashboard'])->name('dashboard');
+    Route::get('user/calon_siswa', [Calon_siswa::class, 'form_casis'])->name('user/calon_siswa');
+
+
     Route::resource('pendaftaran', PendaftarController::class)->except(['registrasi', 'add_registrasi']);
     Route::resource('jurusan', JurusanController::class);
     Route::resource('ortu', OrtuController::class);
     Route::resource('info_jurusan', Info_Jurusan::class);
-    Route::get('admin', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('admin', [DashboardController::class, 'admin_dashboard'])->name('admin.index');
     Route::resource('casis', CasisController::class);
 });
 

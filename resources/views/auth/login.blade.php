@@ -35,18 +35,19 @@
         @if ($errors->any())
             <div>
                 <strong>Whoops! Ada beberapa masalah dengan input Anda.</strong>
-                <ul>
+                <ol>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach
-                </ul>
+                </ol>
             </div>
         @endif
         <form action="{{ route('proses_login') }}" method="POST" class="form">
             @csrf
 
             <div class="container">
-                <input required type="text" name="email" value="{{ old('email') }}" class="input" autocomplete="off">
+                <input required type="text" name="email" value="{{ old('email') }}" class="input"
+                    autocomplete="off">
                 <label class="label">Email</label>
             </div>
             <div class="container">

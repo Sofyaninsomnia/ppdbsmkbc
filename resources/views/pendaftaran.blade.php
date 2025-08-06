@@ -144,9 +144,9 @@
                                     <div class="col-12 text-center mt-3">
                                         <div class="d-flex justify-content-center gap-2">
                                             <button class="btn btn-primary" type="submit">Daftar</button>
-                                            <a href="/home" class="btn btn-outline-secondary back-button">
+                                            <button onclick="location.href='{{ route('home') }}'" class="btn btn-outline-secondary back-button">
                                                 Kembali
-                                            </a>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>

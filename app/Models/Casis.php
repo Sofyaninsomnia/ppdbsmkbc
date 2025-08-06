@@ -15,10 +15,14 @@ class Casis extends Model
         'nisn',
         'nama',
         'tgl_lahir',
+        'ayah',
+        'ibu',
         'alamat',
+        'agama',
         'jenis_kelamin',
         'asal_sekolah',
         'foto',
+        'no_hp',
         'jurusan_id'
     ];
 

@@ -16,7 +16,7 @@
                         <p style="text-align: justify;">{{ $infoJurusan->deskripsi_singkat }}
                     </div>
                     <div class="d-flex">
-                        <button onclick="location.href='/home'" class="btn-get-started">Kembali</button>
+                        <button onclick="location.href='{{ route('home') }}'" class="btn-get-started">Kembali</button>
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
                 <h2>Mengenai</h2>
-                <div><span>Rekayasa Perangkat Lunak</span> <span class="description-title">di SMK Bina Cendekia
+                <div><span>{{ $infoJurusan->jurusan->nama_jurusan }}</span> <span class="description-title">di SMK Bina Cendekia
                         Cirebon</span></div>
             </div><!-- End Section Title -->
 

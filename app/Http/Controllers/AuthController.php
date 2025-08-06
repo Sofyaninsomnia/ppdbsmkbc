@@ -18,7 +18,7 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    function login(Request $request)
+    public function login(Request $request)
     {
         $request->validate([
             'email'     => 'required|email',
@@ -27,20 +27,21 @@ class AuthController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
-        Session::put('email', $user->email);
-        Session::put('name', $user->name);
-
         if (!$user || !Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => [trans('auth.failed')],
-            ]);
+            return back()
+                ->withErrors(['email' => trans('auth.failed')])
+                ->withInput($request->only('email'));
         }
+
+        Session::put('email', $user->email);
+        Session::put('name',  $user->name);
 
         Auth::login($user, $request->remember);
         $request->session()->regenerate();
 
-        return redirect()->intended('admin');
+        return redirect()->intended('dashboard');
     }
+
 
     public function logout(Request $request)
     {
@@ -50,7 +51,7 @@ class AuthController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/home');
+        return redirect()->route('home');
     }
 
     public function registerForm()
@@ -79,13 +80,13 @@ class AuthController extends Controller
         ]);
 
         $pendaftaran->user_id = $user->id;
-        $pendaftaran->save(); 
+        $pendaftaran->save();
 
 
         Auth::login($user);
 
         $request->session()->regenerate();
 
-        return redirect()->intended('admin');
+        return redirect()->intended('dashboard');
     }
 }

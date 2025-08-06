@@ -45,32 +45,67 @@ class CasisController extends Controller
     function create()
     {
         $jurusan = Jurusan::all();
-        $allOrtu = Ortu::all();
 
-        $ayah = $allOrtu->where('jenis_kelamin', 'laki-laki');
-        $ibu = $allOrtu->where('jenis_kelamin', 'perempuan');
-
-        return view('admin.tambah_casis', compact('jurusan', 'ayah', 'ibu'));
+        return view('admin.tambah_casis', compact('jurusan'));
     }
 
     function store(Request $request)
     {
 
-        $validator = Validator::make($request->all(), [
+        $rules = [
             'nisn'  => 'required|numeric|digits:10|unique:casis,nisn',
             'nama' => 'required|string|max:255',
             'tgl_lahir' => 'required|date',
             'alamat' => 'required|string',
             'agama'   => 'required|string',
-            'ayah_id'   => 'required|',
-            'ibu_id'   =>  'required|',
+            'ayah'   => 'required|string|min:3|max:100',
+            'ibu'   =>  'required|string|min:3|max:100',
             'jenis_kelamin' => 'required|in:laki-laki,perempuan',
             'asal_sekolah' => 'required|string|max:255',
-            'foto' => 'required|image|mimes:jpeg,png,jpg|max:20048',
-            'no_hp'         => 'required|string|min:10|max:15',
+            'foto' => 'required|image|mimes:jpeg,png,jpg|max:15048',
+            'no_hp'         => 'required|numeric|min:14',
             'jurusan_id' => 'required|',
 
-        ]);
+        ];
+
+        $message = [
+            'nisn.required'                 => 'Kolom nisn harus di isi!',
+            'nisn.numeric'                  => 'Nisn harus berupa angka!',
+            'nisn.digits'                   => 'Nisn tidak valid!',
+            'nisn.unique'                   => 'Nisn sudah terdaftar!',
+            'nama.required'                 => 'Kolom nisn harus di isi!',
+            'nama.string'                   => 'Nama tidak valid, gunakan nama asli!',
+            'nama.max'                      => 'Nama terlalu panjang!',
+            'tgl_lahir.required'            => 'Kolom tanggal lahir harus di isi!',
+            'tgl_lahir.date'                => 'Tanggal lahir tidak valid, harus berupa tanggal!',
+            'alamat.required'               => 'Kolom alamat harus di isi!',
+            'alamat.string'                 => 'Alamat tidak valid!',
+            'agama.required'                => 'Kolom agama harus di isi!',
+            'ayah.required'                 => 'Kolom nama ayah harus di isi!',
+            'ayah.string'                   => 'Nama ayah tidak valid!',
+            'ayah.min'                      => 'Nama ayah terlalu pendek, minimal 3 huruf!',
+            'ayah.max'                      => 'Nama ayah terlalu panjang, maximal 100 huruf!',
+            'ibu.required'                  => 'Kolo nama ibu harus di isi!',
+            'ibu.string'                    => 'Nama ibu tidak valid!',
+            'ibu.min'                       => 'Nama ibu terlalu pendek, minimal 2 huruf',
+            'ibu.max'                       => 'Nama ibu terlalu panjang, maximal 100 huruf',
+            'jenis_kelamin.required'        => 'Jenis kelamin tidak boleh kosong!',
+            'jenis_kelamin.in'              => 'Jenis kelamin tidak valid!',
+            'asal_sekolah.required'         => 'Kolom asal sekolah harus di isi!',
+            'asal_sekolah.string'           => 'Asal sekolah tidak valid!',      
+            'asal_sekolah.max'              => 'Asal sekolah terlalu panjang, maximal 255 huruf!',
+            'foto.required'                 => 'Foto harus di isi!',
+            'foto.image'                    => 'File harus berupa foto!',
+            'foto.mimes'                    => 'Extensi file harus berupa foto!',
+            'foto.max'                      => 'Ukuran foto terlalu besar, maximal 15mb',
+            'no_hp.required'                => 'Kolom nomor hp harus di isi!',
+            'no_hp.numeric'                 => 'Nomor hp harus berupa angka!',
+            'no_hp.min'                     => 'Nomor hp terlalu pendek, minimal 14 angka!',
+            'jurusan_id'                    => 'Silahkan pilih jurusan terlebih dahulu!'
+
+        ];
+        
+        $validator = Validator::make($request->all(), $rules, $message);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
@@ -78,21 +113,21 @@ class CasisController extends Controller
 
         $fotopath   = $request->file('foto')->store('pas_foto', 'public');
 
-        $casis = new Casis;
-        $casis->nisn = $request->nisn;
-        $casis->nama = $request->nama;
-        $casis->tgl_lahir = $request->tgl_lahir;
-        $casis->alamat = $request->alamat;
-        $casis->agama = $request->agama;
-        $casis->ayah_id = $request->ayah_id;
-        $casis->ibu_id = $request->ibu_id;
-        $casis->jenis_kelamin = $request->jenis_kelamin;
-        $casis->asal_sekolah = $request->asal_sekolah;
-        $casis->foto = $fotopath;
-        $casis->no_hp = $request->no_hp;
-        $casis->jurusan_id = $request->jurusan_id;
 
-        $casis->save();
+        Casis::create([
+            'nisn'          => $request->nisn,
+            'nama'          => $request->nama,
+            'tgl_lahir'     => $request->tgl_lahir,
+            'ayah'          => $request->ayah,
+            'ibu'           => $request->ibu,
+            'alamat'        => $request->alamat,
+            'agama'         => $request->agama,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'asal_sekolah'  => $request->asal_sekolah,
+            'foto'          => $fotopath,
+            'no_hp'         => $request->no_hp,
+            'jurusan_id'    => $request->jurusan_id
+        ]);
 
         return redirect()->route('casis.index')->with('success', 'Data calon siswa berhasil ditambahkan.');
     }
