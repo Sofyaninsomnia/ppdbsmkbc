@@ -20,26 +20,25 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
-            'email'     => 'required|email',
-            'password'  => 'required',
-        ]);
+        $credentials = $request->only('email', 'password');
 
-        $user = User::where('email', $request->email)->first();
+        if (Auth::guard('web')->attempt($credentials)) {
+            $user = Auth::guard('web')->user();
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            return back()
-                ->withErrors(['email' => trans('auth.failed')])
-                ->withInput($request->only('email'));
+                if ($user->role === 'user') {
+                    Session::put('email', $user->email);
+                    Session::put('name',  $user->name);
+                    Session::put('role',  $user->role);
+                    Session::put('foto_profil',  $user->foto);
+                $request->session()->regenerate();
+                return redirect()->route('user.dashboard')->with('success', 'Selamat datang ' . $user->name);
+            }
+
+            Auth::guard('web')->logout();
+            return back()->with(['error' => 'Hanya user yang bisa login.']);
         }
 
-        Session::put('email', $user->email);
-        Session::put('name',  $user->name);
-
-        Auth::login($user, $request->remember);
-        $request->session()->regenerate();
-
-        return redirect()->intended('dashboard');
+        return back()->with(['error' => 'Kredensial tidak valid.']);
     }
 
 
@@ -87,6 +86,6 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended('dashboard');
-    }
+        return redirect()->intended('user.dashboard');
+    }       
 }

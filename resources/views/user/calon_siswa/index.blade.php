@@ -10,27 +10,41 @@
             <h1>Detail Calon Siswa</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('user.dashboard') }}">Home</a></li>
                     <li class="breadcrumb-item active">Detail Casis</li>
                 </ol>
             </nav>
         </div>
         <section class="section profile">
             <div class="row">
+                <div class="col-xl-12">
+                    <div class="alert alert-warning p-1 d-flex justify-content-center align-items-center fw-bold gap-2"><i
+                            class="bi bi-exclamation-circle-fill"></i>
+                        <p class="mt-3">Anda belum mendaftar tahap 2, silahkan daftar terlebih dahulu!</p>
+                    </div>
+                </div>
                 <div class="col-xl-4">
-                    <div class="card">
-                        <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                            <img src="{{ asset('storage/' . ($casis->foto ?? 'pas_foto/default.jpg')) }}" alt="Foto Profil" class="rounded-circle" style="width: 120px; height: 120px; object-fit: cover;">
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                        <div class="card">
+                            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                                <img src="{{ asset('storage/' . ($casis->foto ?? 'pas_foto/default.jpg')) }}"
+                                    alt="Foto Profil" class="rounded-circle"
+                                    style="width: 120px; height: 120px; object-fit: cover;">
 
-                            <h2 class="text-center">{{ $casis->nama ?? 'Nama Calon Siswa' }}</h2>
-                            <h3>NISN: {{ $casis->nisn ?? 'Belum ada NISN' }}</h3>
-                            <div class="social-links mt-2">
-                                    <a href="https://wa.me/62{{ $casis->no_hp ?? '08xx xxxx xxxx' }}" class="whatsapp" target="_blank" title="Hubungi via WhatsApp">
-                                        <i class="bi bi-whatsapp"></i> {{ $casis->no_hp ?? '08xx xxxx xxxx'}}
+                                <h2 class="text-center">{{ $casis->nama ?? 'Nama Calon Siswa' }}</h2>
+                                <h3>NISN: {{ $casis->nisn ?? 'Belum ada NISN' }}</h3>
+                                <div class="social-links mt-2">
+                                    <a href="https://wa.me/62{{ $casis->no_hp ?? '08xx xxxx xxxx' }}" class="whatsapp"
+                                        target="_blank" title="Hubungi via WhatsApp">
+                                        <i class="bi bi-whatsapp"></i> {{ $casis->no_hp ?? '08xx xxxx xxxx' }}
                                     </a>
+                                </div>
                             </div>
                         </div>
+
+                        <button onclick="location.href='{{ route('form_t2') }}'" class="btn btn-primary mt-3">Daftar tahap 2</button>
                     </div>
+
                 </div>
 
                 <div class="col-xl-8">
@@ -38,10 +52,12 @@
                         <div class="card-body pt-3">
                             <ul class="nav nav-tabs nav-tabs-bordered">
                                 <li class="nav-item">
-                                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
+                                    <button class="nav-link active" data-bs-toggle="tab"
+                                        data-bs-target="#profile-overview">Overview</button>
                                 </li>
                                 <li class="nav-item">
-                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-data">Data Lengkap</button>
+                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-data">Data
+                                        Lengkap</button>
                                 </li>
                             </ul>
 
@@ -49,7 +65,8 @@
                                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
                                     <h5 class="card-title">Tentang Calon Siswa</h5>
                                     <p class="small fst-italic">
-                                        {{ $casis->nama ?? 'Calon siswa ini' }} adalah bagian dari calon peserta didik yang mendaftar di jurusan {{ $casis->jurusan->nama ?? 'yang belum ditentukan' }}.
+                                        {{ $casis->nama ?? 'Calon siswa ini' }} adalah bagian dari calon peserta didik yang
+                                        mendaftar di jurusan {{ $casis->jurusan->nama ?? 'yang belum ditentukan' }}.
                                         Informasi lebih lanjut dapat ditemukan di bawah.
                                     </p>
 
@@ -73,7 +90,7 @@
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Jurusan Pilihan</div>
                                         <div class="col-lg-9 col-md-8">
-                                            @if(isset($casis->jurusan))
+                                            @if (isset($casis->jurusan))
                                                 {{ $casis->jurusan->nama_jurusan }}
                                             @else
                                                 <span class="text-muted">Jurusan belum ditentukan</span>
@@ -114,7 +131,8 @@
                                     </div>
                                     --}}
                                 </div>
-                            </div></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -128,5 +146,4 @@
         {{-- Jangan lupa untuk mengimpor Illuminate\Support\Str di controller atau di awal Blade jika diperlukan. --}}
         @php use Illuminate\Support\Str; @endphp
     @endpush
-
 @endsection

@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CasisController;
-use App\Http\Controllers\Home; 
+use App\Http\Controllers\Home;
 use App\Http\Controllers\Info_Jurusan;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\OrtuController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\PendaftarController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\User\Calon_siswa;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/', [Home::class, 'index'])->name('home');
 Route::get('/detail_jurusan/{id}', [Home::class, 'show'])->name('home.show');
@@ -26,17 +28,26 @@ Route::get('daftar/registrasi', [PendaftarController::class, 'registrasi'])->nam
 Route::post('daftar/add_registrasi', [PendaftarController::class, 'add_registrasi'])->name('daftar.add_registrasi');
 Route::get('daftar/show_print_form/{id}', [PendaftarController::class, 'show_print_form'])->name('daftar.show_print_form');
 
-Route::middleware('auth')->group(function () {
-    Route::get('dashboard', [DashboardController::class, 'user_dashboard'])->name('dashboard');
-    Route::get('user/calon_siswa', [Calon_siswa::class, 'form_casis'])->name('user/calon_siswa');
+Route::prefix('user')->group(function() {
+    Route::middleware(['user'])->group(function(){
 
-
-    Route::resource('pendaftaran', PendaftarController::class)->except(['registrasi', 'add_registrasi']);
-    Route::resource('jurusan', JurusanController::class);
-    Route::resource('ortu', OrtuController::class);
-    Route::resource('info_jurusan', Info_Jurusan::class);
-    Route::get('admin', [DashboardController::class, 'admin_dashboard'])->name('admin.index');
-    Route::resource('casis', CasisController::class);
+        Route::get('dashboard', [DashboardController::class, 'user_dashboard'])->name('user.dashboard');
+    });
 });
 
+Route::prefix('admin')->group(function () {
 
+    Route::get('/login/ynhf%%^&FHB134Ctg4yfhHFG', [AdminLoginController::class, 'form_login'])->name('privat.login');
+    Route::post('/login/post', [AdminLoginController::class, 'login'])->name('privat.login.post');
+
+    Route::middleware('auth:admin')->group(function () {
+        Route::get('dashboard', [DashboardController::class, 'admin_dashboard'])->name('admin.dashboard');
+        Route::resource('pendaftaran', PendaftarController::class)->except(['registrasi', 'add_registrasi']);
+        Route::resource('jurusan', JurusanController::class);
+        Route::resource('ortu', OrtuController::class);
+        Route::resource('info_jurusan', Info_Jurusan::class);
+        Route::resource('casis', CasisController::class);
+    });
+
+    Route::post('logout', [AdminLoginController::class, 'logout'])->name('logout');
+});
