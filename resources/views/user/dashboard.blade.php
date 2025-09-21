@@ -1,68 +1,43 @@
 @extends('components.layouts.user')
 
 @section('konten')
-<x-layouts.user.header></x-layouts.user.header>
+    <x-layouts.user.header></x-layouts.user.header>
 
- <x-layouts.user.aside></x-layouts.user.aside>
+    <x-layouts.user.aside></x-layouts.user.aside>
 
- <main id="main" class="main">
+    <main id="main" class="main">
 
-  <div class="pagetitle">
-   <h1>Dashboard</h1>
-  </div>
+        <div class="col-lg-12">
+            <div class="row">
 
-  <div class="row">
-   <div class="col-lg-6">
-    <div class="card">
-     <div class="card-body">
-      <h5 class="card-title">Data casis per bulan</h5>
-      <canvas id="myChart"></canvas>
-     </div>
-    </div>
-   </div>
-  </div>
+                <!-- Sales Card -->
+                <div class="col-xxl-4 col-xl-12 order-0">
+                    <div class="card">
+                        <div class="d-flex align-items-end row">
+                            <div class="col-sm-7">
+                                <div class="card-body">
+                                    <h5 class="card-title text-primary">Selamat datang {{ Session::get('name') }}! 🎉</h5>
+                                    <p class="mb-4">
+                                        Pendaftaran pertama kamu sudah berhasil. Silahkan mendaftar ke tahap selanjutnya
+                                    </p>
 
- </main>
+                                    <a href="" class="btn btn-sm btn-outline-primary">Pendaftaran tahap 2</a>
+                                </div>
+                            </div>
+                            <div class="col-sm-5 text-center text-sm-left">
+                                <div class="card-body pb-0 px-0 px-md-4">
+                                    <img src="{{ asset('assets/img/man.png') }}" height="140"
+                                        alt="View Badge User" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-  <script>
-  const ctx = document.getElementById('myChart').getContext('2d');
-  const myChart = new Chart(ctx, {
-    type: 'bar', // Anda bisa mengganti jenis chart sesuai kebutuhan (line, pie, dll.)
-    data: {
-      labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni'],
-      datasets: [{
-        label: 'Daftar casis',
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
-        ],
-        borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
-        ],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      animation: {
-        duration: 1000, // Durasi animasi dalam milidetik
-        easing: 'easeOutQuad' // Jenis easing animasi (lihat dokumentasi Chart.js untuk opsi lain)
-      },
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  });
- </script>
+
+            </div>
+
+        </div>
+
+    </main>
 @endsection

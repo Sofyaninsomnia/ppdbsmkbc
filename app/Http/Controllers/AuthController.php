@@ -29,7 +29,7 @@ class AuthController extends Controller
                     Session::put('email', $user->email);
                     Session::put('name',  $user->name);
                     Session::put('role',  $user->role);
-                    Session::put('foto_profil',  $user->foto);
+                    Session::put('foto_profil',  $user->foto_profil);
                 $request->session()->regenerate();
                 return redirect()->route('user.dashboard')->with('success', 'Selamat datang ' . $user->name);
             }
