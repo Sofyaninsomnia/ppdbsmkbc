@@ -19,7 +19,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link @activeclass('data_ortu')" href="/data_ortu">
+            <a class="nav-link @activeclass('user/data_ortu')" href="{{ route('data.ortu') }}">
                 <i class="bi bi-people"></i>
                 <span>Orang tua</span>
             </a>

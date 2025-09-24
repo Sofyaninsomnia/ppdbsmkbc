@@ -22,4 +22,8 @@ class Ortu extends Model
     public function siswa(){
         return $this->hasMany(Casis::class);
     }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

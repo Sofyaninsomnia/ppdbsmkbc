@@ -49,4 +49,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(Pendaftaran::class);
     }
+
+    public function ortu(){
+        return $this->hasMany(Ortu::class);
+    }
 }
