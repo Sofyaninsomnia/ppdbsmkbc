@@ -12,9 +12,9 @@
         <li class="nav-heading">Pendataan</li>
 
         <li class="nav-item">
-            <a class="nav-link @activeclass('user/calon_siswa')" href="">
+            <a class="nav-link @activeclass('user/form/tahap-2')" href="{{ route('form.tahap_2') }}">
                 <i class="bi bi-people"></i>
-                <span>Calon siswa</span>
+                <span>Tahap 2</span>
             </a>
         </li>
 

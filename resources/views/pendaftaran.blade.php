@@ -40,7 +40,7 @@
                 <div class="col-md-7 col-sm-12 mx-auto">
                     <div class="card pt-4">
                         <div class="card-body">
-                            <div class="text-center mb-5">  
+                            <div class="text-center mb-5">
                                 <img src="{{ asset('assets/img/bc.png') }}" height="48" class="mb-4">
                                 <h3>SMK BINA CENDEKIA CIREBON</h3>
                                 <p>Pendaftaran online, info selengkapnya akan dihubungi oleh admin.</p>
@@ -54,7 +54,8 @@
                                             <label for="nisn">NISN</label>
                                             <input type="text"
                                                 class="form-control @error('nisn') is-invalid @enderror" name="nisn"
-                                                value="{{ old('nisn') }}" placeholder="Masukkan nisn yang valid" required>
+                                                value="{{ old('nisn') }}" placeholder="Masukkan nisn yang valid"
+                                                required>
                                             @error('nisn')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -65,7 +66,8 @@
                                             <label for="nama_lengkap">Nama Lengkap</label>
                                             <input type="text"
                                                 class="form-control @error('nama_lengkap') is-invalid @enderror"
-                                                name="nama_lengkap" value="{{ old('nama_lengkap') }}" placeholder="Nama lengkap calon siswa" required>
+                                                name="nama_lengkap" value="{{ old('nama_lengkap') }}"
+                                                placeholder="Nama lengkap calon siswa" required>
                                             @error('nama_lengkap')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -76,7 +78,8 @@
                                             <label for="asal_sekolah">Asal Sekolah</label>
                                             <input type="text"
                                                 class="form-control @error('asal_sekolah') is-invalid @enderror"
-                                                name="asal_sekolah" value="{{ old('asal_sekolah') }}" placeholder="Asal sekolah" required>
+                                                name="asal_sekolah" value="{{ old('asal_sekolah') }}"
+                                                placeholder="Asal sekolah" required>
                                             @error('asal_sekolah')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -123,7 +126,8 @@
                                             <label for="no_hp">No WhatsApp Aktif</label>
                                             <input type="text"
                                                 class="form-control @error('no_hp') is-invalid @enderror" name="no_hp"
-                                                value="{{ old('no_hp') }}" placeholder="Harap masukkan nomor yang aktif " required>
+                                                value="{{ old('no_hp') }}"
+                                                placeholder="Harap masukkan nomor yang aktif " required>
                                             @error('no_hp')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -144,7 +148,8 @@
                                     <div class="col-12 text-center mt-3">
                                         <div class="d-flex justify-content-center gap-2">
                                             <button class="btn btn-primary" type="submit">Daftar</button>
-                                            <a href='{{ route('home') }}' class="btn btn-outline-secondary back-button">
+                                            <a href='{{ route('home') }}'
+                                                class="btn btn-outline-secondary back-button">
                                                 Kembali
                                             </a>
                                         </div>
@@ -179,7 +184,7 @@
             Swal.fire({
                 icon: 'error',
                 title: 'Gagal!',
-                html: '<ul>@foreach ($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul>',
+                html: '<ul style="list-style-type: none;">@foreach ($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul>',
                 showConfirmButton: true,
                 confirmButtonText: 'OK',
             });

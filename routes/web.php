@@ -32,6 +32,8 @@ Route::prefix('user')->group(function() {
     Route::middleware(['user'])->group(function(){
 
         Route::get('dashboard', [DashboardController::class, 'user_dashboard'])->name('user.dashboard');
+
+        Route::get('form/tahap-2', [Calon_siswa::class, 'form_tahap_2'])->name('form.tahap_2');
     });
 });
 

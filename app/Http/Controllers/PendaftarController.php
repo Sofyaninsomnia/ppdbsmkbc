@@ -96,7 +96,7 @@ class PendaftarController extends Controller
         'jurusan_id.exists'     => 'Jurusan tidak valid.',
         'no_hp.required'        => 'No HP wajib diisi',
         'no_hp.string'          => 'No HP harus berupa teks',
-        'no_hp.min'             => 'No HP minimal 10 karakter',
+        'no_hp.min'             => 'No HP minimal 10 angka',
         'no_hp.max'             => 'No HP maksimal 15 karakter',
         'pas_foto.required'     => 'Foto harus diisi',
         'pas_foto.image'        => 'Foto harus berupa image',
