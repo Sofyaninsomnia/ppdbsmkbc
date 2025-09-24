@@ -14,16 +14,15 @@ class Casis extends Model
     protected $fillable = [
         'nisn',
         'nama',
-        'tgl_lahir',
-        'ayah',
-        'ibu',
+        'ttl',
         'alamat',
         'agama',
         'jenis_kelamin',
         'asal_sekolah',
         'foto',
         'no_hp',
-        'jurusan_id'
+        'jurusan_id',
+        'user_id'
     ];
 
     public function jurusan()

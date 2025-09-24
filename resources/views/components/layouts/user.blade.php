@@ -50,9 +50,18 @@
                 icon: 'success',
                 title: 'Berhasil!',
                 text: '{{ session('success') }}',
-                timer: 1500,
-                showConfirmButton: false
+                showConfirmButton: true,
+                confirmButtonText: 'OK',
             })
+        @endif
+        @if ($errors->any())
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal!',
+                html: '<ul style="list-style-type: none;">@foreach ($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul>',
+                showConfirmButton: true,
+                confirmButtonText: 'OK',
+            });
         @endif
     </script>
 
