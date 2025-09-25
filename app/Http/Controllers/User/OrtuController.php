@@ -31,7 +31,8 @@ class OrtuController extends Controller
             'nama'      => 'required|string|min:3|max:100',
             'ttl'       => 'required|string|min:15|max:100',
             'pekerjaan' => 'required|string|min:4|max:100',
-            'alamat'    => 'required|string'
+            'alamat'    => 'required|string',
+            'ktp'       => 'required|image|mimes:jpg,png,jpeg|max:5048'
         ];
 
         $message = [
@@ -49,12 +50,17 @@ class OrtuController extends Controller
             'ttl.max'                       => 'TTL terlalu panjang maximal 100 karakter',
             'alamat.required'               => 'Alamat harus di isi',
             'alamat.string'                 => 'Alamat tidak valid',
+            'ktp.required'                  => 'KTP harus di isi',
+            'ktp.image'                     => 'KTP harus berupa foto',
+            'ktp.mimes'                     => 'File extensi tidak valid. Harus jpg,png,jpeg'
         ];
 
         $validator = Validator::make($request->all(), $rules, $message);
         if ($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput();
         }
+
+        $ktp = $request->file('ktp')->store('dokumen', 'public');
 
         Ortu::create([
             'nik'           => $request->nik,
@@ -64,7 +70,8 @@ class OrtuController extends Controller
             'pekerjaan'     => $request->pekerjaan,
             'jenis_kelamin' => $request->jenis_kelamin,
             'alamat'        => $request->alamat,
-            'user_id'       => Auth::user()->id
+            'user_id'       => Auth::user()->id,
+            'ktp'           => $ktp
         ]);
 
         return redirect()->route('data.ortu')->with('success', 'Data berhasil dikirim   ');

@@ -18,6 +18,7 @@ class Ortu extends Model
         'pekerjaan',
         'jenis_kelamin',
         'alamat',
+        'ktp',
         'user_id'
     ];
 

@@ -21,13 +21,13 @@
                 <div class="card">
                     <div class="card-body">
                         <h3 class="card-title">Pendataan ibu kandung</h3>
-                        <form action="{{ route('kirim.data_ortu') }}" method="POST">
+                        <form action="{{ route('kirim.data_ortu') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group mb-2">
                                 <label for="nik">Nik</label>
                                 <input type="number" name="nik" class="form-control @error('nik')
                                     is-invalid
-                                @enderror" placeholder="Massukan nik yang valid">
+                                @enderror" placeholder="Massukan nik yang valid"> required
                                 @error('nik')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -36,7 +36,7 @@
                                 <label for="nama">Nama</label>
                                 <input type="text" name="nama" class="form-control @error('nama')
                                     is-invalid
-                                @enderror" placeholder="Nama lengkap ibu">
+                                @enderror" placeholder="Nama lengkap ibu" required>
                                 @error('nama')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -45,7 +45,7 @@
                                 <label for="ttl">Tempat Tanggal Lahir</label>
                                 <input type="text" name="ttl" class="form-control @error('ttl')
                                     is-invalid
-                                @enderror" placeholder="Contoh: Cirebon 22 Maret 1988">
+                                @enderror" placeholder="Contoh: Cirebon 22 Maret 1988" required>
                                 @error('ttl')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -54,7 +54,7 @@
                                 <label for="no_hp">Nomor Handphone</label>
                                 <input type="number" name="no_hp" class="form-control @error('no_hp')
                                     is-invalid
-                                @enderror" placeholder="08xx xxxx xxxx">
+                                @enderror" placeholder="08xx xxxx xxxx" required>
                                 @error('no_hp')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -63,7 +63,7 @@
                                 <label for="pekerjaan">Pekerjaan ibu</label>
                                 <input type="text" name="pekerjaan" class="form-control @error('pekerjaan')
                                     is-invalid
-                                @enderror" placeholder="Apa pekerjaan ibu">
+                                @enderror" placeholder="Apa pekerjaan ibu" required>
                                 @error('pekerjaan')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -73,8 +73,17 @@
                                 <label for="pekerjaan">Alamat</label>
                                 <textarea name="alamat" rows="5" class="form-control @error('pekerjaan')
                                     is-invalid
-                                @enderror" placeholder="alamat rumah lengkap"></textarea>
+                                @enderror" placeholder="alamat rumah lengkap" required></textarea>
                                 @error('pekerjaan')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="ktp">KTP Ibu</label><small class="text-danger"> maximal 5mb</small>
+                                <input type="file" name="ktp" class="form-control @error('ktp')
+                                    is-invalid
+                                @enderror" required>
+                                @error('ktp')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
