@@ -5,7 +5,7 @@
     <x-layouts.user.aside></x-layouts.user.aside>
 
     <main id="main" class="main">
-         <div class="pagetitle">
+        <div class="pagetitle">
             <h1>Pendataan orang tua</h1>
             <nav>
                 <ol class="breadcrumb">
@@ -17,7 +17,11 @@
         <div class="col-lg-12">
             <div class="row">
 
-                <div class="alert alert-danger text-center">Data orang tua belum lengkap</div>
+                @if (!$cekAyah || !$cekIbu)
+                    <div class="alert alert-danger text-center">Data orang tua belum lengkap</div>
+                @else
+                    <div class="alert alert-success text-center">Data sudah lengkap silahkan ke pendataan selanjutnya</div>
+                @endif
 
                 <div class="col-lg-6">
                     <div class="card">
@@ -30,7 +34,11 @@
                                     width="250px">
                             </div>
                             <div class="d-flex justify-content-center align-items-center">
-                                <a href="{{ route('data.ayah') }}" class="btn btn-primary">Lengkapi</a>
+                                @if (!$cekAyah)
+                                    <a href="{{ route('data.ayah') }}" class="btn btn-primary">Lengkapi</a>
+                                @else
+                                    <span class="text-success">✅ Data Ayah sudah diisi</span>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -46,8 +54,12 @@
                                     width="250px">
                             </div>
                             <div class="d-flex justify-content-center align-items-center">
-                                <a href="" class="btn btn-primary">Lengkapi</a>
-                            </div>  
+                                @if (!$cekIbu)
+                                    <a href="{{ route('data.ibu') }}" class="btn btn-primary">Lengkapi</a>
+                                @else
+                                    <span class="text-success">✅ Data Ibu sudah diisi</span>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>

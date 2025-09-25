@@ -38,7 +38,9 @@ Route::prefix('user')->group(function() {
         Route::post('create/casis', [Calon_siswa::class, 'create'])->name('create_casis');
 
         Route::get('data_ortu', [UserOrtuController::class, 'index'])->name('data.ortu');
-        Route::get('data/ayah', [UserOrtuController::class, 'ayah'])->name('data.ayah');
+        Route::get('form_data/ayah', [UserOrtuController::class, 'ayah'])->name('data.ayah');
+        Route::get('form_data/ibu', [UserOrtuController::class, 'ibu'])->name('data.ibu');
+        Route::post('kirim/data_otu', [UserOrtuController::class, 'create_data'])->name('kirim.data_ortu');
     });
 });
 

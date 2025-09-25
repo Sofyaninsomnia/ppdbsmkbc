@@ -7,12 +7,12 @@
 
     <main id="main" class="main">
         <div class="pagetitle">
-            <h1>Data ayah kandung</h1>
+            <h1>Data ibu kandung</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('user.dashboard') }}">Dashboard</a></li>
                     <li class="breadcrumb-item"><a href="{{ route('data.ortu') }}">Pendataan orang tua</a></li>
-                    <li class="breadcrumb-item active">Data ayah kandung</li>
+                    <li class="breadcrumb-item active">Data ibu kandung</li>
                 </ol>
             </nav>
         </div>
@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title">Pendataan ayah kandung</h3>
+                        <h3 class="card-title">Pendataan ibu kandung</h3>
                         <form action="{{ route('kirim.data_ortu') }}" method="POST">
                             @csrf
                             <div class="form-group mb-2">
@@ -36,7 +36,7 @@
                                 <label for="nama">Nama</label>
                                 <input type="text" name="nama" class="form-control @error('nama')
                                     is-invalid
-                                @enderror" placeholder="Nama lengkap ayah">
+                                @enderror" placeholder="Nama lengkap ibu">
                                 @error('nama')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -60,15 +60,15 @@
                                 @enderror
                             </div>
                             <div class="form-group mb-2">
-                                <label for="pekerjaan">Pekerjaan Ayah</label>
+                                <label for="pekerjaan">Pekerjaan ibu</label>
                                 <input type="text" name="pekerjaan" class="form-control @error('pekerjaan')
                                     is-invalid
-                                @enderror" placeholder="Apa pekerjaan ayah">
+                                @enderror" placeholder="Apa pekerjaan ibu">
                                 @error('pekerjaan')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <input type="hidden" name="jenis_kelamin" value="laki-laki">
+                            <input type="hidden" name="jenis_kelamin" value="perempuan">
                             <div class="form-group mb-2">
                                 <label for="pekerjaan">Alamat</label>
                                 <textarea name="alamat" rows="5" class="form-control @error('pekerjaan')

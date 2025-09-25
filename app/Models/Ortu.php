@@ -13,10 +13,12 @@ class Ortu extends Model
     protected $fillable = [
         'nik',
         'nama',
+        'ttl',
         'no_hp',
         'pekerjaan',
         'jenis_kelamin',
         'alamat',
+        'user_id'
     ];
 
     public function siswa(){
