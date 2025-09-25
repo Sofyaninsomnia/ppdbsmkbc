@@ -27,7 +27,7 @@
                                 <label for="nik">Nik</label>
                                 <input type="number" name="nik" class="form-control @error('nik')
                                     is-invalid
-                                @enderror" placeholder="Massukan nik yang valid"> required
+                                @enderror" placeholder="Massukan nik yang valid" required> 
                                 @error('nik')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

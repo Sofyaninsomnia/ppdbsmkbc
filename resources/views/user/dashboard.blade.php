@@ -19,13 +19,18 @@
                                             Pendaftaran pertama kamu sudah berhasil. Silahkan mendaftar ke tahap selanjutnya
                                         </p>
                                         <a href="{{ route('form.tahap_2') }}"
-                                            class="btn btn-sm btn-outline-primary">Pendaftaran tahap 2</a>
+                                            class="btn btn-sm btn-outline-primary">Pendaftaran
+                                            tahap 2</a>
+                                    @elseif(!$cekAyah && !$cekIbu)
+                                        <p class="mb-4">
+                                            Pendataan orang tua kamu selesai. Silahkan mendaftar ke tahap terakhir
+                                        </p>
+                                        <a href="{{ route('data.ortu') }}" class="btn btn-sm btn-outline-primary">Upload
+                                            Dokumen</a>
                                     @else
                                         <p class="mb-4">
-                                            Pendaftaran kedua kamu sudah berhasil. Silahkan mendaftar ke tahap selanjutnya
+                                            Pendaftaran berhasil. Silahkan tunggu pesan dari admin, pesan akan dikirim melalui nomor whatsapp yang didaftarkan
                                         </p>
-                                        <a href="{{ route('form.tahap_2') }}"
-                                            class="btn btn-sm btn-outline-primary">Pendataan orang tua</a>
                                     @endif
                                 </div>
                             </div>
@@ -69,7 +74,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">
-                                Alur Pendaftaran Online 
+                                Alur Pendaftaran Online
                             </h5>
                             <div class="d-flex justify-content-center align-items-center">
                                 <img src="{{ asset('assets/img/alur.png') }}" alt="Alur Pendaftaran" class="img-fluid"

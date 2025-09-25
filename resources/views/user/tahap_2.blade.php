@@ -42,6 +42,14 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Warning</h5>
+                                <p>Jika ada data yang salah silahkan hubungi admin</p>
+                                <p>Nomor admin: <a href="" class="text-success"><i class="bi bi-whatsapp"></i><span> 089602867121</span></a></p>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-xl-8">
