@@ -44,18 +44,39 @@
                 </div>
 
                 <div class="col-lg-6">
+                    @php
+                        $progres_percentage = 20;
+                        $progres_text = 'Belum Ada progres';
+
+                        if (isset($user)){
+                            $progres_percentage = 43;
+                            $progres_text = 'Pendaftaran tahap 2 selesai';
+                            if (isset($cekAyah)){
+                                $progres_percentage = 53;
+                                $progres_text = 'Pendataan ayah selesai';
+                                if (isset($cekIbu)){
+                                    $progres_percentage = 61;
+                                    $progres_text = 'Pendataan ibu selesai';
+                                    if ($cekAyah || $cekIbu){
+                                        $progres_percentage = 79;
+                                        $progres_text = 'Pendataan orang tua selesai';
+                                    }
+                                }
+                            }
+                        }
+                    @endphp
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">
                                 <i class="bi bi-gear-fill text-primary"></i>
                                 Progres Pendaftaran
                             </h5>
-                            <p class="card-text">Pendaftaran tahap 1 sudah selesai.</p>
+                            <p class="card-text">{{ $progres_text }}.</p>
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 56%" aria-valuenow="56"
-                                    aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar" role="progressbar" style="width: {{ $progres_percentage }}%" aria-valuenow="56"
+                                    aria-valuemin="{{ $progres_percentage }}" aria-valuemax="100"></div>
                             </div>
-                            <span class="d-block mt-2 text-end">56%</span>
+                            <span class="d-block mt-2 text-end">{{ $progres_percentage }}%</span>
                         </div>
                     </div>
 

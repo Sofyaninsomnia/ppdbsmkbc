@@ -26,7 +26,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link @activeclass('')" href="/">
+            <a class="nav-link @activeclass('user/document')" href="{{ route('document.index') }}">
                 <i class="bi bi-folder2-open"></i>
                 <span>Dokumen</span>
             </a>

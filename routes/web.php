@@ -10,6 +10,7 @@ use App\Http\Controllers\OrtuController;
 use App\Http\Controllers\PendaftarController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\User\Calon_siswa;
+use App\Http\Controllers\User\DocumentController;
 use App\Http\Controllers\User\OrtuController as UserOrtuController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -41,6 +42,8 @@ Route::prefix('user')->group(function() {
         Route::get('form_data/ayah', [UserOrtuController::class, 'ayah'])->name('data.ayah');
         Route::get('form_data/ibu', [UserOrtuController::class, 'ibu'])->name('data.ibu');
         Route::post('kirim/data_otu', [UserOrtuController::class, 'create_data'])->name('kirim.data_ortu');
+
+        Route::get('document', [DocumentController::class, 'index'])->name('document.index');
     });
 });
 
