@@ -44,6 +44,7 @@ Route::prefix('user')->group(function() {
         Route::post('kirim/data_otu', [UserOrtuController::class, 'create_data'])->name('kirim.data_ortu');
 
         Route::get('document', [DocumentController::class, 'index'])->name('document.index');
+        Route::post('dokument/proses/', [DocumentController::class, 'upload'])->name('user.document.upload');
     });
 });
 

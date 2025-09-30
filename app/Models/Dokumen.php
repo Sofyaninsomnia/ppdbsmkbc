@@ -8,11 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Dokumen extends Model
 {
     use HasFactory;
-    protected $table = 'dokumen';
+    protected $table = 'document';
     protected $fillable = [
-        'ijazah',
-        'akta',
-        'kk',
-        'rapot'
+        'user_id',
+        'type',
+        'file_name', // Tambahkan ini agar lebih informatif
+        'path',      // WAJIB: Path tempat file disimpan
+        'status',
+        'batch_id',
     ];
 }
