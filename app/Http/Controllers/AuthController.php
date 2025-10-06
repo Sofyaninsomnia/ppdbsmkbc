@@ -18,6 +18,11 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
+    public function formLogin_admin()
+    {
+        return view('admin.login');
+    }
+
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
@@ -26,10 +31,6 @@ class AuthController extends Controller
             $user = Auth::guard('web')->user();
 
                 if ($user->role === 'user') {
-                    Session::put('email', $user->email);
-                    Session::put('name',  $user->name);
-                    Session::put('role',  $user->role);
-                    Session::put('foto_profil',  $user->foto_profil);
                 $request->session()->regenerate();
                 return redirect()->route('user.dashboard')->with('success', 'Selamat datang ' . $user->name);
             }
@@ -39,6 +40,25 @@ class AuthController extends Controller
         }
 
         return back()->with(['error' => 'Kredensial tidak valid.']);
+    }
+
+    public function login_admin(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::guard('web')->attempt($credentials)) {
+            $user = Auth::guard('web')->user();
+
+            if ($user->role === 'admin') {
+                $request->session()->regenerate();
+                return redirect()->route('admin.dashboard')->with('success', 'Selamat datang ' . $user->name);
+            }
+
+            Auth::guard('web')->logout();
+            return back()->withErrors(['email' => 'Hanya admin yang bisa login.']);
+        }
+
+        return back()->withErrors(['email' => 'Kredensial tidak valid.']);
     }
 
 

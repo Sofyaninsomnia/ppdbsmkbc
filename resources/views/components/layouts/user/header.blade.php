@@ -89,18 +89,14 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="{{ asset('storage/foto_profil/' . Session::get('foto_profil')) }}" alt="Profile" class="rounded-circle">
-            @if (Session::has('name'))
-            <span class="d-none d-md-block dropdown-toggle ps-2">{{ Session::get('name') }}</span>
-            @endif
+            <img src="{{ asset('storage/foto_profil/' . auth()->user()->foto_profil) }}" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{ auth()->user()->name }}</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              @if (Session::has('email'))
-              <h6>{{ Session::get('email') }}</h6>
-              @endif
-              <span>Web Designer</span>
+              <h6>{{ auth()->user()->email }}</h6>
+              <span>Web Designer`</span>
             </li>
             <li>
               <hr class="dropdown-divider">

@@ -29,7 +29,8 @@
                                             Dokumen</a>
                                     @else
                                         <p class="mb-4">
-                                            Pendaftaran berhasil. Silahkan tunggu pesan dari admin, pesan akan dikirim melalui nomor whatsapp yang didaftarkan
+                                            Pendaftaran berhasil. Silahkan tunggu pesan dari admin, pesan akan dikirim
+                                            melalui nomor whatsapp yang didaftarkan
                                         </p>
                                     @endif
                                 </div>
@@ -48,18 +49,22 @@
                         $progres_percentage = 20;
                         $progres_text = 'Belum Ada progres';
 
-                        if (isset($user)){
+                        if (isset($user)) {
                             $progres_percentage = 43;
                             $progres_text = 'Pendaftaran tahap 2 selesai';
-                            if (isset($cekAyah)){
+                            if (isset($cekAyah)) {
                                 $progres_percentage = 53;
                                 $progres_text = 'Pendataan ayah selesai';
-                                if (isset($cekIbu)){
+                                if (isset($cekIbu)) {
                                     $progres_percentage = 61;
                                     $progres_text = 'Pendataan ibu selesai';
-                                    if ($cekAyah || $cekIbu){
+                                    if ($cekAyah || $cekIbu) {
                                         $progres_percentage = 79;
                                         $progres_text = 'Pendataan orang tua selesai';
+                                        if ($exist) {
+                                            $progres_percentage = 100;
+                                            $progres_text = 'Upload dokumen berhasil. Tunggu kabar dari admin yaa';
+                                        }
                                     }
                                 }
                             }
@@ -68,13 +73,17 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">
-                                <i class="bi bi-gear-fill text-primary"></i>
+                                @if ($progres_percentage == 100)
+                                    <i class="bi bi-check-square-fill text-success"></i>
+                                @else
+                                    <i class="bi bi-gear-fill text-primary"></i>
+                                @endif
                                 Progres Pendaftaran
                             </h5>
                             <p class="card-text">{{ $progres_text }}.</p>
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: {{ $progres_percentage }}%" aria-valuenow="56"
-                                    aria-valuemin="{{ $progres_percentage }}" aria-valuemax="100"></div>
+                                <div class="progress-bar" role="progressbar" style="width: {{ $progres_percentage }}%"
+                                    aria-valuenow="56" aria-valuemin="{{ $progres_percentage }}" aria-valuemax="100"></div>
                             </div>
                             <span class="d-block mt-2 text-end">{{ $progres_percentage }}%</span>
                         </div>
@@ -82,11 +91,11 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">
-                                <i class="bi bi-gear-fill text-primary"></i>
-                                Progres Pendaftaran
+                            <h5 class="card-title"> 
+                                <i class="bi bi-exclamation-circle-fill text-warning"></i>
+                                Peringatan
                             </h5>
-                            <p class="card-text">Pendaftaran tahap 1 sudah selesai.</p>
+                            <p class="card-text">Jika ada data yang keliru mohon hubungi admin kami. Info kontak admin disiini <span><a href=""><i class="bi bi-whatsapp"></i> 08934782997</a></span></p>
                         </div>
                     </div>
                 </div>
