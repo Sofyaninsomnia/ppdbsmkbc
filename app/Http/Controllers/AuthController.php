@@ -55,10 +55,10 @@ class AuthController extends Controller
             }
 
             Auth::guard('web')->logout();
-            return back()->withErrors(['email' => 'Hanya admin yang bisa login.']);
+            return back()->with(['error' => 'Hanya admin yang bisa login.']);
         }
 
-        return back()->withErrors(['email' => 'Kredensial tidak valid.']);
+        return back()->with(['error' => 'Kredensial tidak valid.']);
     }
 
 
