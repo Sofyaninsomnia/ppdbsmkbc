@@ -3,7 +3,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link @activeclass('admin')" href="/admin">
+            <a class="nav-link @activeclass('admin/dashboard')" href="{{  route('admin.dashboard')}}">
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
             </a>
@@ -12,7 +12,7 @@
         <li class="nav-heading">Main menu</li>
 
         <li class="nav-item">
-            <a class="nav-link @activeclass('jurusan')" href="/jurusan">
+            <a class="nav-link @activeclass('admin/daftar/jurusan')" href="{{ route('jurusan.index') }}">
                 <i class="bi bi-mortarboard"></i>
                 <span>Daftar Jurusan</span>
             </a>

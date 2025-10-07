@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Home;
 use App\Http\Controllers\PendaftarController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\User\Calon_siswa;
 use App\Http\Controllers\User\DocumentController;
 use App\Http\Controllers\User\OrtuController as UserOrtuController;
@@ -49,6 +50,12 @@ Route::prefix('admin')->group(function () {
 
     Route::middleware(['admin'])->group(function () {
         Route::get('dashboard', [DashboardController::class, 'admin_dashboard'])->name('admin.dashboard');
+
+        Route::get('daftar/jurusan', [JurusanController::class, 'index'])->name('jurusan.index');
+        Route::post('create/jurusan', [JurusanController::class, 'store'])->name('jurusan.store');
+        Route::get('ubah/jurusan/{id}', [JurusanController::class, 'edit'])->name('jurusan.edit');
+        Route::put('update/jurusan/{id}', [JurusanController::class, 'update'])->name('jurusan.update');
+        Route::delete('hapus/jurusan/{id}', [JurusanController::class, 'destroy'])->name('jurusan.destroy');
     });
 
 });

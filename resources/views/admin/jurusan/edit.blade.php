@@ -10,7 +10,7 @@
         <section class="section">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Ubah data casis</h4>
+                    <h4 class="card-title">Ubah data jurusan</h4>
                     <form action="{{ route('jurusan.update', $jurusan->id) }}" method="POST">
                         @csrf
                         @method('PUT')
