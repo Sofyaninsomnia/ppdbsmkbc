@@ -22,11 +22,11 @@
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#"
                 aria-expanded="false">
-                <i class="bi bi-info-circle"></i><span>Informasi</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-clipboard2-plus"></i><span>Pendaftaran</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav" style="">
                 <li>
-                    <a class="dropdown-item @activeclass('info_jurusan')" href="/info_jurusan">
+                    <a class="dropdown-item @activeclass('admin/info_jurusan')" href="{{ route('info_jurusan.index') }}">
                         <i class="bi bi-circle"></i>
                         Info Jurusan
                     </a>

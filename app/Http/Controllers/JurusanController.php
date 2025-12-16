@@ -9,54 +9,96 @@ use Illuminate\Support\Facades\Validator;
 
 class JurusanController extends Controller
 {
-    function index() {
+    function index()
+    {
 
         $jurusan = Jurusan::all();
+        
         return view('admin.jurusan.index', compact('jurusan'));
     }
 
-    function store(Request $request) {
+    function store(Request $request)
+    {
 
-        $validator = Validator::make($request->all(), [
-            'nama_jurusan'  => 'required|string|max:100'
-        ]);
+        $rules = [
+            'nama_jurusan'  => 'required|string|max:100',
+            'kuota'         => 'required|numeric|min:1|max_digits:11'
+        ];
+
+        $message = [
+            'nama_jurusan.required'         => 'Kolom nama jurusan harap di isi!',
+            'nama_jurusan.string'           => 'Nama jurusan tidak valid!',
+            'nama_jurusan.max'              => 'Nama jurusan terlalu panjang, maximal 100 huruf',
+            'kuota.required'                => 'Kuota harus di isi!',
+            'kuota.numeric'                 => 'Data kuota harus berupa angka',
+            'kuota.min'                     => 'Kuota terlalu kecil min 1 angka',
+            'kuota.max_digits'              => 'Kuota terlalu banyak maximal 99.999.999.999'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $message);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $jurusan = new Jurusan;
-        $jurusan->nama_jurusan = $request->nama_jurusan;
-        $jurusan->save();
+        Jurusan::create([
+            'nama_jurusan'  => $request->nama_jurusan,
+            'kuota'         => $request->kuota
+        ]);
 
         return redirect()->route('jurusan.index')->with(['success' => 'Data berhasil ditambahkan']);
-
     }
 
-    function edit( $id) {
+    public function show_infoJurusan($id)
+    {
+        $info = Jurusan::with('info')->findOrFail($id);
+        return view('admin.jurusan.info_jurusan', compact('info'));
+    }
+
+    function edit($id)
+    {
         $jurusan = Jurusan::findOrFail($id);
         return view('admin.jurusan.edit', compact('jurusan'));
     }
 
-    function update(Request $request, $id) {
-
+    function update(Request $request, $id)
+    {
+        // dd($request->all());
         $jurusan = Jurusan::findOrFail($id);
 
-        $validator = Validator::make($request->all(), [
-            'nama_jurusan'  => 'required|string|max:100'
-        ]);
+        $rules = [
+            'nama_jurusan'  => 'required|string|max:100',
+            'kuota'         => 'required|numeric|min:1|max_digits:11'
+        ];
+
+        $message = [
+            'nama_jurusan.required'         => 'Kolom nama jurusan harap di isi!',
+            'nama_jurusan.string'           => 'Nama jurusan tidak valid!',
+            'nama_jurusan.max'              => 'Nama jurusan terlalu panjang, maximal 100 huruf',
+            'kuota.required'                => 'Kuota harus di isi!',
+            'kuota.numeric'                 => 'Data kuota harus berupa angka',
+            'kuota.min'                     => 'Kuota terlalu kecil min 1 angka',
+            'kuota.max_digits'              => 'Kuota terlalu banyak maximal 99.999.999.999'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $message);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $jurusan->nama_jurusan = $request->nama_jurusan;
-        $jurusan->save();
+        $data = [
+            'nama_jurusan'  => $request->nama_jurusan,
+            'kuota'         => $request->kuota
+        ];
+
+        $jurusan->update($data);
 
         return redirect()->route('jurusan.index')->with('success', 'Data berhasil ditambahkan');
     }
 
-    function destroy($id){
+    function destroy($id)
+    {
         $jurusan = Jurusan::findOrFail($id);
         $jurusan->delete();
 

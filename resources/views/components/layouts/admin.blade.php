@@ -54,14 +54,14 @@
         </div>
     </footer><a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         @if (session('success'))
             Swal.fire({
                 icon: 'success',
                 title: 'Berhasil!',
                 text: '{{ session('success') }}',
-                timer: 1500,
-                showConfirmButton: false
+                showConfirmButton: true
             })
         @endif
         @if ($errors->any())

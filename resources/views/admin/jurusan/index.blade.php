@@ -17,6 +17,7 @@
                             <tr>
                                 <th>NO</th>
                                 <th>NAMA JURUSAN</th>
+                                <th>KUOTA</th>
                                 <th>ACTION</th>
                             </tr>
                         </thead>
@@ -25,8 +26,10 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $jurusan->nama_jurusan }}</td>
+                                    <td>{{ $jurusan->kuota }}</td>
                                     <td>
                                         <a href="{{ route('jurusan.edit', $jurusan) }}" class="btn btn-sm btn-info"><i class="bi bi-pen-fill" style="color: white"></i></a>
+                                        <a href="{{ route('jurusan.info', $jurusan) }}" class="btn btn-sm btn-warning"><i class="bi bi-eye" style="color: white"></i></a>
                                         <form action="{{ route('jurusan.destroy', $jurusan) }}" method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')
@@ -55,10 +58,14 @@
                             <form action="{{ route('jurusan.store') }}" method="POST">
                                 @csrf
                                 <div class="modal-body">
-                                    <div class="mb-3">
+                                    <div class="">
                                         <label for="nama_jurusan" class="col-form-label">Nama Jurusan</label>
-                                        <input type="text" name="nama_jurusan" id="nama_jurusan" class="form-control"
+                                        <input type="text" name="nama_jurusan" class="form-control" placeholder="Nama jurusan..."
                                             required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="kuota" class="col-form-label">Kuota</label>
+                                        <input type="number" name="kuota" class="form-control" placeholder="Jumlah kuota yang tersedia...." required>
                                     </div>
                                 </div>
                                 <div class="modal-footer">

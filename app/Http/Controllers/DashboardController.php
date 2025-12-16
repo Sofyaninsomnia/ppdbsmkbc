@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Ortu;
 use App\Models\Dokumen;
+use App\Models\Jurusan;
 
 class DashboardController extends Controller
 {
@@ -21,6 +22,8 @@ class DashboardController extends Controller
     }
 
     public function admin_dashboard(){
-        return view('admin.index');
+        $jurusan = Jurusan::with('info')->get();
+        // dd($jurusan);
+        return view('admin.index', compact('jurusan'));
     }
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Home;
 use App\Http\Controllers\PendaftarController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Info_Jurusan;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\User\Calon_siswa;
 use App\Http\Controllers\User\DocumentController;
@@ -56,6 +57,15 @@ Route::prefix('admin')->group(function () {
         Route::get('ubah/jurusan/{id}', [JurusanController::class, 'edit'])->name('jurusan.edit');
         Route::put('update/jurusan/{id}', [JurusanController::class, 'update'])->name('jurusan.update');
         Route::delete('hapus/jurusan/{id}', [JurusanController::class, 'destroy'])->name('jurusan.destroy');
+        Route::get('jurusan/info_jurusan/{id}', [JurusanController::class, 'show_infoJurusan'])->name('jurusan.info');
+
+        Route::get('info_jurusan', [Info_Jurusan::class, 'index'])->name('info_jurusan.index');
+        Route::get('info_jurusan/get_form', [Info_Jurusan::class, 'create'])->name('info_jurusan.create');
+        Route::post('info_jurusan/create', [Info_Jurusan::class, 'store'])->name('info_jurusan.create');
+        Route::get('info_jurusan/{id}', [Info_Jurusan::class, 'show'])->name('info_jurusan.show');
+        Route::get('info_jurusan/edit/{id}', [Info_Jurusan::class, 'edit'])->name('info_jurusan.edit');
+        Route::put('info_jurusan/update/{id}', [Info_Jurusan::class, 'update'])->name('info_jurusan.update');
+        Route::delete('info_jurusan/delete/{id}', [Info_Jurusan::class, 'destroy'])->name('info_jurusan.destroy');
     });
 
 });

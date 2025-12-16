@@ -13,6 +13,7 @@ class Jurusan extends Model
 
     protected $fillable = [
         'nama_jurusan',
+        'kuota'
     ];
 
     public function info()
