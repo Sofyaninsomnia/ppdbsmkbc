@@ -114,7 +114,10 @@
                                             <h6 class="fw-bold">{{ $jurusan->kuota }}</h6>
                                         </div>
                                     @else
-                                        <span class="text-danger">Logo Tidak Tersedia</span>
+                                        <div class="d-flex justify-content-center align-items-center flex-column">
+                                            <span class="text-danger mb-2">Logo Tidak Tersedia</span>
+                                            {{-- <h6 class="fw-bold">{{ $jurusan->kuota }}</h6> --}}
+                                        </div>
                                     @endif
                                 @empty
                                     <h3>Empty cuuyy</h3>

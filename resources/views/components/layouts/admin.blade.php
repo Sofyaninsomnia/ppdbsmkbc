@@ -26,6 +26,8 @@
     <link href="{{ asset('assets/adm/vendor/simple-datatables/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.0/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
     <link href="{{ asset('assets/adm/css/style.css') }}" rel="stylesheet">
@@ -88,7 +90,6 @@
         updateTime(); // Initial call
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.0/dist/sweetalert2.all.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('assets/adm/vendor/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('assets/adm/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/adm/vendor/chart.js/chart.umd.js') }}"></script>

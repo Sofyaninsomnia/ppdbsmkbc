@@ -61,7 +61,7 @@ Route::prefix('admin')->group(function () {
 
         Route::get('info_jurusan', [Info_Jurusan::class, 'index'])->name('info_jurusan.index');
         Route::get('info_jurusan/get_form', [Info_Jurusan::class, 'create'])->name('info_jurusan.create');
-        Route::post('info_jurusan/create', [Info_Jurusan::class, 'store'])->name('info_jurusan.create');
+        Route::post('info_jurusan/create', [Info_Jurusan::class, 'store'])->name('info_jurusan.store');
         Route::get('info_jurusan/{id}', [Info_Jurusan::class, 'show'])->name('info_jurusan.show');
         Route::get('info_jurusan/edit/{id}', [Info_Jurusan::class, 'edit'])->name('info_jurusan.edit');
         Route::put('info_jurusan/update/{id}', [Info_Jurusan::class, 'update'])->name('info_jurusan.update');

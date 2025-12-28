@@ -8,36 +8,40 @@
         <div class="col-lg-12">
             <div class="row">
 
-                <div class="col-xxl-4 col-xl-12 order-0">
-                    <div class="card">
-                        <div class="d-flex align-items-end row">
-                            <div class="col-sm-7">
-                                <div class="card-body">
-                                    <h5 class="card-title text-primary">Selamat datang {{ Session::get('name') }}! 🎉</h5>
-                                    @if (!$user)
-                                        <p class="mb-4">
-                                            Pendaftaran pertama kamu sudah berhasil. Silahkan mendaftar ke tahap selanjutnya
-                                        </p>
-                                        <a href="{{ route('form.tahap_2') }}"
-                                            class="btn btn-sm btn-outline-primary">Pendaftaran
-                                            tahap 2</a>
-                                    @elseif(!$cekAyah && !$cekIbu)
-                                        <p class="mb-4">
-                                            Pendataan orang tua kamu selesai. Silahkan mendaftar ke tahap terakhir
-                                        </p>
-                                        <a href="{{ route('data.ortu') }}" class="btn btn-sm btn-outline-primary">Upload
-                                            Dokumen</a>
-                                    @else
-                                        <p class="mb-4">
-                                            Pendaftaran berhasil. Silahkan tunggu pesan dari admin, pesan akan dikirim
-                                            melalui nomor whatsapp yang didaftarkan
-                                        </p>
-                                    @endif
+                <div class="col-lg-12">
+                    <div class="col-xxl-12 col-xl-12 order-0">
+                        <div class="card">
+                            <div class="d-flex align-items-end row">
+                                <div class="col-sm-7">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-primary">Selamat datang {{ Session::get('name') }}! 🎉
+                                        </h5>
+                                        @if (!$user)
+                                            <p class="mb-4">
+                                                Pendaftaran pertama kamu sudah berhasil. Silahkan mendaftar ke tahap
+                                                selanjutnya
+                                            </p>
+                                            <a href="{{ route('form.tahap_2') }}"
+                                                class="btn btn-sm btn-outline-primary">Pendaftaran
+                                                tahap 2</a>
+                                        @elseif(!$cekAyah && !$cekIbu)
+                                            <p class="mb-4">
+                                                Pendataan orang tua kamu selesai. Silahkan mendaftar ke tahap terakhir
+                                            </p>
+                                            <a href="{{ route('data.ortu') }}" class="btn btn-sm btn-outline-primary">Upload
+                                                Dokumen</a>
+                                        @else
+                                            <p class="mb-4">
+                                                Pendaftaran berhasil. Silahkan tunggu pesan dari admin, pesan akan dikirim
+                                                melalui nomor whatsapp yang didaftarkan
+                                            </p>
+                                        @endif
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-5 text-center text-sm-left">
-                                <div class="card-body pb-0 px-0 px-md-4">
-                                    <img src="{{ asset('assets/img/man.png') }}" height="140" alt="View Badge User" />
+                                <div class="col-sm-5 text-center text-sm-left">
+                                    <div class="card-body pb-0 px-0 px-md-4">
+                                        <img src="{{ asset('assets/img/man.png') }}" height="140" alt="View Badge User" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -91,11 +95,12 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title"> 
+                            <h5 class="card-title">
                                 <i class="bi bi-exclamation-circle-fill text-warning"></i>
                                 Peringatan
                             </h5>
-                            <p class="card-text">Jika ada data yang keliru mohon hubungi admin kami. Info kontak admin disiini <span><a href=""><i class="bi bi-whatsapp"></i> 08934782997</a></span></p>
+                            <p class="card-text">Jika ada data yang keliru mohon hubungi admin kami. Info kontak admin
+                                disiini <span><a href=""><i class="bi bi-whatsapp"></i> 08934782997</a></span></p>
                         </div>
                     </div>
                 </div>

@@ -22,7 +22,8 @@ class JurusanController extends Controller
 
         $rules = [
             'nama_jurusan'  => 'required|string|max:100',
-            'kuota'         => 'required|numeric|min:1|max_digits:11'
+            'kuota'         => 'required|numeric|min:1|max_digits:11',
+            'skt'           => 'required|string|min:2|max:10'
         ];
 
         $message = [
@@ -32,7 +33,11 @@ class JurusanController extends Controller
             'kuota.required'                => 'Kuota harus di isi!',
             'kuota.numeric'                 => 'Data kuota harus berupa angka',
             'kuota.min'                     => 'Kuota terlalu kecil min 1 angka',
-            'kuota.max_digits'              => 'Kuota terlalu banyak maximal 99.999.999.999'
+            'kuota.max_digits'              => 'Kuota terlalu banyak maximal 99.999.999.999',
+            'skt.required'                  => 'Singkatan harus di isi!',
+            'skt.string'                    => 'Singkatan tidak valid',
+            'skt.min'                       => 'Singkatan terlalu pendek, minimal 3 huruf',
+            'skt.max'                       => 'Singkatan terlalu panjang, maximal 10 huruf'
         ];
 
         $validator = Validator::make($request->all(), $rules, $message);
@@ -43,7 +48,8 @@ class JurusanController extends Controller
 
         Jurusan::create([
             'nama_jurusan'  => $request->nama_jurusan,
-            'kuota'         => $request->kuota
+            'kuota'         => $request->kuota,
+            'skt'           => $request->skt
         ]);
 
         return redirect()->route('jurusan.index')->with(['success' => 'Data berhasil ditambahkan']);
@@ -68,7 +74,8 @@ class JurusanController extends Controller
 
         $rules = [
             'nama_jurusan'  => 'required|string|max:100',
-            'kuota'         => 'required|numeric|min:1|max_digits:11'
+            'kuota'         => 'required|numeric|min:1|max_digits:11',
+            'skt'           => 'required|string|min:2|max:10'
         ];
 
         $message = [
@@ -78,7 +85,11 @@ class JurusanController extends Controller
             'kuota.required'                => 'Kuota harus di isi!',
             'kuota.numeric'                 => 'Data kuota harus berupa angka',
             'kuota.min'                     => 'Kuota terlalu kecil min 1 angka',
-            'kuota.max_digits'              => 'Kuota terlalu banyak maximal 99.999.999.999'
+            'kuota.max_digits'              => 'Kuota terlalu banyak maximal 99.999.999.999',
+            'skt.required'                  => 'Singkatan harus di isi!',
+            'skt.string'                    => 'Singkatan tidak valid',
+            'skt.min'                       => 'Singkatan terlalu pendek, minimal 3 huruf',
+            'skt.max'                       => 'Singkatan terlalu panjang, maximal 10 huruf'
         ];
 
         $validator = Validator::make($request->all(), $rules, $message);
@@ -89,7 +100,8 @@ class JurusanController extends Controller
 
         $data = [
             'nama_jurusan'  => $request->nama_jurusan,
-            'kuota'         => $request->kuota
+            'kuota'         => $request->kuota,
+            'skt'           => $request->skt
         ];
 
         $jurusan->update($data);

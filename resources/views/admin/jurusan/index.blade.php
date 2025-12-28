@@ -18,6 +18,7 @@
                                 <th>NO</th>
                                 <th>NAMA JURUSAN</th>
                                 <th>KUOTA</th>
+                                <th>SINGKATAN</th>
                                 <th>ACTION</th>
                             </tr>
                         </thead>
@@ -27,13 +28,17 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $jurusan->nama_jurusan }}</td>
                                     <td>{{ $jurusan->kuota }}</td>
+                                    <td>{{ $jurusan->skt }}</td>
                                     <td>
-                                        <a href="{{ route('jurusan.edit', $jurusan) }}" class="btn btn-sm btn-info"><i class="bi bi-pen-fill" style="color: white"></i></a>
-                                        <a href="{{ route('jurusan.info', $jurusan) }}" class="btn btn-sm btn-warning"><i class="bi bi-eye" style="color: white"></i></a>
-                                        <form action="{{ route('jurusan.destroy', $jurusan) }}" method="POST" class="d-inline">
+                                        <a href="{{ route('jurusan.edit', $jurusan) }}" class="btn btn-sm btn-info"><i
+                                                class="bi bi-pen-fill" style="color: white"></i></a>
+                                        <a href="{{ route('jurusan.info', $jurusan) }}" class="btn btn-sm btn-warning"><i
+                                                class="bi bi-eye" style="color: white"></i></a>
+                                        <form class="d-inline deleteform" action="{{ route('jurusan.destroy', $jurusan->id) }}"
+                                            method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin hapus?')"><i class="bi bi-trash-fill"></i></button>
+                                            <button class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -58,14 +63,22 @@
                             <form action="{{ route('jurusan.store') }}" method="POST">
                                 @csrf
                                 <div class="modal-body">
-                                    <div class="">
+                                    <div class="form-group">
                                         <label for="nama_jurusan" class="col-form-label">Nama Jurusan</label>
-                                        <input type="text" name="nama_jurusan" class="form-control" placeholder="Nama jurusan..."
-                                            required>
+                                        <input type="text" name="nama_jurusan" class="form-control"
+                                            placeholder="Nama jurusan..." required>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="kuota" class="col-form-label">Kuota</label>
-                                        <input type="number" name="kuota" class="form-control" placeholder="Jumlah kuota yang tersedia...." required>
+                                    <div class="row g-2">
+                                        <div class="col mb-0">
+                                            <label for="kuota" class="col-form-label">Kuota</label>
+                                            <input type="number" name="kuota" class="form-control"
+                                                placeholder="Kuota yang tersedia...." required>
+                                        </div>
+                                        <div class="col mb-0">
+                                            <label for="skt" class="col-form-label">Singkatan</label>
+                                            <input type="text" name="skt" class="form-control"
+                                                placeholder="Singkatan jurusan...." required>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -85,7 +98,7 @@
         </div>
     </main>
     <script>
-        @if(session('success'))
+        @if (session('success'))
             Swal.fire({
                 icon: 'success',
                 title: 'Berhasil!',
@@ -94,5 +107,47 @@
                 showConfirmButton: false
             })
         @endif
+    </script>
+    <script>
+        $(document).ready(function() {
+            // $(document).on('click', '.btn-edit', function() {
+            //     const hashedId = $(this).data('id');
+            //     const nama = $(this).data('nama');
+            //     const nomorAnggota = $(this).data('nomor-anggota');
+            //     const unit = $(this).data('unit');
+            //     const noHp = $(this).data('no-hp');
+
+            //     $('#formEdit').attr('action', `/simpanan/${hashedId}`);
+
+            //     $('#edit_id').val(hashedId);
+            //     $('#edit_nama').val(nama);
+            //     $('#edit_nomor_anggota').val(nomorAnggota);
+            //     $('#edit_unit').val(unit);
+            //     $('#edit_no_hp').val(noHp);
+
+            //     $('#editModal').modal('show');
+            // });
+
+            const deleteForms = document.querySelectorAll('.deleteform');
+            deleteForms.forEach(form => {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+
+                    Swal.fire({
+                        title: "Apa kamu yakin?",
+                        text: "Data ini akan dihapus secara permanen!!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Ya, saya yakin!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            this.submit();
+                        }
+                    });
+                });
+            });
+        });
     </script>
 @endsection
