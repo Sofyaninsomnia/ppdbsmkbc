@@ -26,7 +26,7 @@
     <link href="{{ asset('assets/adm/vendor/simple-datatables/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.0/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
@@ -74,6 +74,32 @@
                 confirmButtonText: 'OK'
             });
         @endif
+    </script>
+
+    <script>
+        $(document).ready(function() {
+
+            const deleteForms = document.querySelectorAll('.deleteform');
+            deleteForms.forEach(form => {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+
+                    Swal.fire({
+                        title: "Apa kamu yakin?",
+                        text: "Data ini akan dihapus secara permanen!!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Ya, saya yakin!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            this.submit();
+                        }
+                    });
+                });
+            });
+        });
     </script>
 
     <script>

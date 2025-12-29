@@ -46,9 +46,11 @@ class Info_Jurusan extends Controller
             'logo.required'              => 'Logo jurusan wajib diunggah.',
             'logo.image'                 => 'File logo harus berupa gambar.',
             'logo.max'                   => 'Ukuran logo maksimal 2 MB.',
+            'logo.mimes'                 => 'Extensi logo tidak valid! harus jpg,png,jpeg,webp',
             'cover.required'             => 'Foto kegiatan wajib diunggah.',
             'cover.image'                => 'File foto kegiatan harus berupa gambar.',
             'cover.max'                  => 'Ukuran foto kegiatan maksimal 4 MB.',
+            'cover.mimes'                => 'Extensi cover tidak valid! harus jpg,png,jpeg,webp'
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -57,25 +59,28 @@ class Info_Jurusan extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $file     = $request->file('logo');
-        // $manager  = new ImageManager(new Driver());
+        $filename  = Str::random(40) . '.webp';
+        $fileLogo  = $request->file('logo');
         
-        $image    = $manager->read($file)->encodeByMediaType('image/webp', quality: 80);
+        $imageLogo = $manager->read($fileLogo)->encodeByMediaType('image/webp', quality: 80);
 
-        $filename = Str::random(40) . '.webp';
-        $path     = 'logo/' . $filename;
-        Storage::disk('public')->put($path, (string) $image);
+        $pathLogo  = 'logo/' . $filename;
+        Storage::disk('public')->put($pathLogo, (string) $imageLogo);
 
-        $logopath = $path;
+        $fileCover  = $request->file('cover');
+        $imageCover = $manager->read($fileCover)->encodeByMediaType('image/webp', quality: 80);
 
-        $coverpath  = $request->file('cover')->store('cover', 'public');
+        $pathCover  = 'cover/' . $filename;
+        Storage::disk('public')->put($pathCover, (string) ($imageCover));
+        
+        
 
         InfoJurusan::create([
             'jurusan_id'            => $request->input('jurusan_id'),
             'deskripsi_singkat'     => $request->input('deskripsi_singkat'),
             'deskripsi'             => $request->input('deskripsi'),
-            'logo'                  => $logopath,
-            'cover'                 => $coverpath,
+            'logo'                  => $pathLogo,
+            'cover'                 => $pathCover,
         ]);
 
         return redirect()->route('info_jurusan.index')->with(['success' => 'Data berhasil ditambahkan']);

@@ -109,8 +109,9 @@
                                 @forelse ($jurusan as $jurusan)
                                     @if ($jurusan->info)
                                         <div class="d-flex justify-content-center align-items-center flex-column">
+                                            <h6 class="fw-bold">{{ $jurusan->skt }}</h6>
                                             <img src="{{ asset('storage/' . $jurusan->info->logo) }}"
-                                                style="border-radius: 50%" width="72px" class="mb-2" alt="">
+                                                 width="72px" class="mb-2" alt="">
                                             <h6 class="fw-bold">{{ $jurusan->kuota }}</h6>
                                         </div>
                                     @else

@@ -108,46 +108,4 @@
             })
         @endif
     </script>
-    <script>
-        $(document).ready(function() {
-            // $(document).on('click', '.btn-edit', function() {
-            //     const hashedId = $(this).data('id');
-            //     const nama = $(this).data('nama');
-            //     const nomorAnggota = $(this).data('nomor-anggota');
-            //     const unit = $(this).data('unit');
-            //     const noHp = $(this).data('no-hp');
-
-            //     $('#formEdit').attr('action', `/simpanan/${hashedId}`);
-
-            //     $('#edit_id').val(hashedId);
-            //     $('#edit_nama').val(nama);
-            //     $('#edit_nomor_anggota').val(nomorAnggota);
-            //     $('#edit_unit').val(unit);
-            //     $('#edit_no_hp').val(noHp);
-
-            //     $('#editModal').modal('show');
-            // });
-
-            const deleteForms = document.querySelectorAll('.deleteform');
-            deleteForms.forEach(form => {
-                form.addEventListener('submit', function(event) {
-                    event.preventDefault();
-
-                    Swal.fire({
-                        title: "Apa kamu yakin?",
-                        text: "Data ini akan dihapus secara permanen!!",
-                        icon: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#3085d6",
-                        cancelButtonColor: "#d33",
-                        confirmButtonText: "Ya, saya yakin!"
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            this.submit();
-                        }
-                    });
-                });
-            });
-        });
-    </script>
 @endsection

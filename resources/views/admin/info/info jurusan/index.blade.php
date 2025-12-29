@@ -33,7 +33,7 @@
                                                 <a href="{{ route('info_jurusan.edit', $jurusan->id) }}"
                                                     class="btn btn-sm btn-outline-warning me-1">Edit</a>
                                                 <form action="{{ route('info_jurusan.destroy', $jurusan->id) }}" method="POST"
-                                                    class="d-inline" onsubmit="return confirm('Yakin ingin hapus?')">
+                                                    class="d-inline deleteform">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="btn btn-sm btn-outline-danger">Hapus</button>
