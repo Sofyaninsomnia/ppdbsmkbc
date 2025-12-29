@@ -4,15 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\InfoJurusan;
 use App\Models\Jurusan;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class Info_Jurusan extends Controller
 {
     public function index()
     {
-
         $info_jurusan = InfoJurusan::latest()->get();
         return view('admin.info.info jurusan.index', compact('info_jurusan'));
     }
@@ -24,15 +26,15 @@ class Info_Jurusan extends Controller
         return view('admin.info.info jurusan.create', compact('jurusan'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, ImageManager $manager)
     {
 
         $rules = [
             'jurusan_id'                => 'required|exists:jurusan,id',
             'deskripsi_singkat'         => 'required|string|max:255',
             'deskripsi'                 => 'required|string|',
-            'logo'                      => 'required|image|max:3048',
-            'cover'                      => 'required|image|max:4048'
+            'logo'                      => 'required|image|max:2048|mimes:jpg,png,jpeg,webp',
+            'cover'                      => 'required|image|max:3048|mimes:jpg,png,jpeg,webp'
         ];
 
         $messages = [
@@ -55,7 +57,17 @@ class Info_Jurusan extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $logopath   = $request->file('logo')->store('logo', 'public');
+        $file     = $request->file('logo');
+        // $manager  = new ImageManager(new Driver());
+        
+        $image    = $manager->read($file)->encodeByMediaType('image/webp', quality: 80);
+
+        $filename = Str::random(40) . '.webp';
+        $path     = 'logo/' . $filename;
+        Storage::disk('public')->put($path, (string) $image);
+
+        $logopath = $path;
+
         $coverpath  = $request->file('cover')->store('cover', 'public');
 
         InfoJurusan::create([
