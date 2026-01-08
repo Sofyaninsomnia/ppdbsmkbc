@@ -41,23 +41,23 @@
                                 <tbody>
                                     <tr>
                                         <th class="w-25">Nama Jurusan</th>
-                                        <td>{{ $infoJurusan->jurusan->nama_jurusan }}</td>
+                                        <td>: {{ $infoJurusan->jurusan->nama_jurusan }}</td>
                                     </tr>
                                     <tr>
                                         <th>Deskripsi Singkat</th>
-                                        <td>{{ $infoJurusan->deskripsi_singkat }}</td>
+                                        <td>: {{ $infoJurusan->deskripsi_singkat }}</td>
                                     </tr>
                                     <tr>
                                         <th>Deskripsi Lengkap</th>
-                                        <td>{{ $infoJurusan->deskripsi }}</td>
+                                        <td>: {{ $infoJurusan->deskripsi }}</td>
                                     </tr>
                                     <tr>
                                         <th>Dibuat pada</th>
-                                        <td>{{ $infoJurusan->created_at->translatedFormat('d F Y, H:i') }}</td>
+                                        <td>: {{ $infoJurusan->created_at->translatedFormat('l d F Y') }}</td>
                                     </tr>
                                     <tr>
                                         <th>Diubah pada</th>
-                                        <td>{{ $infoJurusan->updated_at->translatedFormat('d F Y, H:i') }}</td>
+                                        <td>: {{ $infoJurusan->updated_at->translatedFormat('l d F Y') }}</td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -48,11 +48,15 @@ class PendaftarController extends Controller
         $selectedJurusanId = $request->jurusan_id;
         $searchTerm = $request->search;
 
-        return view('admin.info.info ppdb.index', compact('jurusan', 'pendaftaran', 'selectedJurusanId', 'searchTerm'));
+        return view('admin.info.info_ppdb.index', compact('jurusan', 'pendaftaran', 'selectedJurusanId', 'searchTerm'));
     }
 
+    function show($id){
+        $pendaftaran = Pendaftaran::with('user')->findOrFail($id);
+        return view('admin.info.info_ppdb.show', compact('pendaftaran'));
+    }
 
-    function destroy(string $id)
+    function destroy($id)
     {
         $pendaftaran = Pendaftaran::findOrFail($id);
         $pendaftaran->delete();

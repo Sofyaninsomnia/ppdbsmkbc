@@ -18,6 +18,7 @@ class DashboardController extends Controller
         $user = Casis::where('user_id', $userId)->exists();
         $cekAyah = Ortu::where('user_id', $userId)->where('jenis_kelamin', 'laki-laki')->exists();
         $cekIbu = Ortu::where('user_id', $userId)->where('jenis_kelamin', 'perempuan')->exists();
+        // dd($cekIbu);
         return view('user.dashboard', compact('user', 'cekAyah', 'cekIbu', 'exist'));
     }
 

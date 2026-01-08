@@ -54,6 +54,7 @@ class CasisController extends Controller
 
         $rules = [
             'nisn'  => 'required|numeric|digits:10|unique:casis,nisn',
+            'nisn'  => 'required|numeric|digits:16|unique:casis,nik',
             'nama' => 'required|string|max:255',
             'tgl_lahir' => 'required|date',
             'alamat' => 'required|string',
@@ -73,6 +74,10 @@ class CasisController extends Controller
             'nisn.numeric'                  => 'Nisn harus berupa angka!',
             'nisn.digits'                   => 'Nisn tidak valid!',
             'nisn.unique'                   => 'Nisn sudah terdaftar!',
+            'nik.required'                  => 'Kolom nik harus di isi!',
+            'nik.numeric'                   => 'Nik harus berupa angka',
+            'nik.digits'                    => 'Nik tidak valid!',
+            'nik.unique'                    => 'Nik sudah terdaftar, harap isi yang benar!',
             'nama.required'                 => 'Kolom nisn harus di isi!',
             'nama.string'                   => 'Nama tidak valid, gunakan nama asli!',
             'nama.max'                      => 'Nama terlalu panjang!',
@@ -116,6 +121,7 @@ class CasisController extends Controller
 
         Casis::create([
             'nisn'          => $request->nisn,
+            'nik'           => $request->nik,
             'nama'          => $request->nama,
             'tgl_lahir'     => $request->tgl_lahir,
             'ayah'          => $request->ayah,
@@ -149,25 +155,67 @@ class CasisController extends Controller
 
     public function update(Request $request, $id)
     {
-        // 1. Temukan data Casis yang akan diperbarui
         $casis = Casis::findOrFail($id);
 
-        // 2. Definisi Aturan Validasi
-        $validator = Validator::make($request->all(), [
-            'nisn' => [
-                'required',
-                'numeric',
-                'digits:10',
-            ],
+        $rules = [
+            'nisn'  => 'required|numeric|digits:10|unique:casis,nisn',
+            'nisn'  => 'required|numeric|digits:16|unique:casis,nik',
             'nama' => 'required|string|max:255',
             'tgl_lahir' => 'required|date',
             'alamat' => 'required|string',
+            'agama'   => 'required|string',
+            'ayah'   => 'required|string|min:3|max:100',
+            'ibu'   =>  'required|string|min:3|max:100',
             'jenis_kelamin' => 'required|in:laki-laki,perempuan',
             'asal_sekolah' => 'required|string|max:255',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:4048',
-            'no_hp' => 'required|string|min:10|max:15',
-            'jurusan_id' => 'required|exists:jurusan,id',
-        ]);
+            'foto' => 'required|image|mimes:jpeg,png,jpg|max:15048',
+            'no_hp'         => 'required|numeric|min:14',
+            'jurusan_id' => 'required|',
+
+        ];
+
+        $message = [
+            'nisn.required'                 => 'Kolom nisn harus di isi!',
+            'nisn.numeric'                  => 'Nisn harus berupa angka!',
+            'nisn.digits'                   => 'Nisn tidak valid!',
+            'nisn.unique'                   => 'Nisn sudah terdaftar!',
+            'nik.required'                  => 'Kolom nik harus di isi!',
+            'nik.numeric'                   => 'Nik harus berupa angka',
+            'nik.digits'                    => 'Nik tidak valid!',
+            'nik.unique'                    => 'Nik sudah terdaftar, harap isi yang benar!',
+            'nama.required'                 => 'Kolom nisn harus di isi!',
+            'nama.string'                   => 'Nama tidak valid, gunakan nama asli!',
+            'nama.max'                      => 'Nama terlalu panjang!',
+            'tgl_lahir.required'            => 'Kolom tanggal lahir harus di isi!',
+            'tgl_lahir.date'                => 'Tanggal lahir tidak valid, harus berupa tanggal!',
+            'alamat.required'               => 'Kolom alamat harus di isi!',
+            'alamat.string'                 => 'Alamat tidak valid!',
+            'agama.required'                => 'Kolom agama harus di isi!',
+            'ayah.required'                 => 'Kolom nama ayah harus di isi!',
+            'ayah.string'                   => 'Nama ayah tidak valid!',
+            'ayah.min'                      => 'Nama ayah terlalu pendek, minimal 3 huruf!',
+            'ayah.max'                      => 'Nama ayah terlalu panjang, maximal 100 huruf!',
+            'ibu.required'                  => 'Kolo nama ibu harus di isi!',
+            'ibu.string'                    => 'Nama ibu tidak valid!',
+            'ibu.min'                       => 'Nama ibu terlalu pendek, minimal 2 huruf',
+            'ibu.max'                       => 'Nama ibu terlalu panjang, maximal 100 huruf',
+            'jenis_kelamin.required'        => 'Jenis kelamin tidak boleh kosong!',
+            'jenis_kelamin.in'              => 'Jenis kelamin tidak valid!',
+            'asal_sekolah.required'         => 'Kolom asal sekolah harus di isi!',
+            'asal_sekolah.string'           => 'Asal sekolah tidak valid!',      
+            'asal_sekolah.max'              => 'Asal sekolah terlalu panjang, maximal 255 huruf!',
+            'foto.required'                 => 'Foto harus di isi!',
+            'foto.image'                    => 'File harus berupa foto!',
+            'foto.mimes'                    => 'Extensi file harus berupa foto!',
+            'foto.max'                      => 'Ukuran foto terlalu besar, maximal 15mb',
+            'no_hp.required'                => 'Kolom nomor hp harus di isi!',
+            'no_hp.numeric'                 => 'Nomor hp harus berupa angka!',
+            'no_hp.min'                     => 'Nomor hp terlalu pendek, minimal 14 angka!',
+            'jurusan_id'                    => 'Silahkan pilih jurusan terlebih dahulu!'
+
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $message);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
@@ -181,19 +229,24 @@ class CasisController extends Controller
             $casis->foto = $fotopath;
         }
 
-        $casis->nisn = $request->nisn;
-        $casis->nama = $request->nama;
-        $casis->tgl_lahir = $request->tgl_lahir;
-        $casis->alamat = $request->alamat;
-        $casis->jenis_kelamin = $request->jenis_kelamin;
-        $casis->asal_sekolah = $request->asal_sekolah;
-        $casis->no_hp = $request->no_hp;
-        $casis->jurusan_id = $request->jurusan_id;
+        $data = [
+            'nisn'          => $request->nisn,
+            'nik'           => $request->nik,
+            'nama'          => $request->nama,
+            'tgl_lahir'     => $request->tgl_lahir,
+            'ayah'          => $request->ayah,
+            'ibu'           => $request->ibu,
+            'alamat'        => $request->alamat,
+            'agama'         => $request->agama,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'asal_sekolah'  => $request->asal_sekolah,
+            'foto'          => $fotopath,
+            'no_hp'         => $request->no_hp,
+            'jurusan_id'    => $request->jurusan_id
+        ];
 
-        // 6. Simpan Perubahan
-        $casis->save();
+        $casis->update($data);
 
-        // 7. Redirect ke halaman index dengan pesan sukses
         return redirect()->route('casis.index')->with('success', 'Data calon siswa berhasil diperbarui.');
     }
 

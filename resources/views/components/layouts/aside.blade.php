@@ -26,15 +26,15 @@
             </a>
             <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav" style="">
                 <li>
-                    <a class="dropdown-item @activeclass('admin/info_jurusan')" href="{{ route('info_jurusan.index') }}">
+                    <a class="dropdown-item" href="{{ route('tahap_1') }}">
                         <i class="bi bi-circle"></i>
-                        Info Jurusan
+                        Pendaftaran Tahap 1
                     </a>
                 </li>
                 <li>
-                    <a class="dropdown-item @activeclass('pendaftaran')" href="/pendaftaran">
+                    <a class="dropdown-item" href="{{ route('tahap_2') }}">
                         <i class="bi bi-circle"></i>
-                        Info Pendaftaran
+                        Pendaftaran Tahap 2
                     </a>
                 </li>
             </ul>
@@ -61,7 +61,13 @@
             </ul>
         </li>
 
-
+        
+        <li class="nav-item">
+            <a class="nav-link @activeclass('admin/user/management')" href="">
+                <i class="bi bi-folder2-open"></i>
+                <span>User Management</span>
+            </a>
+        </li>
 
 
         <li class="nav-item">

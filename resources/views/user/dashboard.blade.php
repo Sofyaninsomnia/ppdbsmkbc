@@ -53,18 +53,22 @@
                         $progres_percentage = 20;
                         $progres_text = 'Belum Ada progres';
 
-                        if (isset($user)) {
+                        if (($user)) {
                             $progres_percentage = 43;
                             $progres_text = 'Pendaftaran tahap 2 selesai';
-                            if (isset($cekAyah)) {
+
+                            if ($cekAyah) {
                                 $progres_percentage = 53;
                                 $progres_text = 'Pendataan ayah selesai';
-                                if (isset($cekIbu)) {
+
+                                if ($cekIbu) {
                                     $progres_percentage = 61;
                                     $progres_text = 'Pendataan ibu selesai';
-                                    if ($cekAyah || $cekIbu) {
+
+                                    if ($cekAyah && $cekIbu) {
                                         $progres_percentage = 79;
                                         $progres_text = 'Pendataan orang tua selesai';
+
                                         if ($exist) {
                                             $progres_percentage = 100;
                                             $progres_text = 'Upload dokumen berhasil. Tunggu kabar dari admin yaa';

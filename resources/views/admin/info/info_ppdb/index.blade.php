@@ -5,12 +5,21 @@
     <x-layouts.aside />
 
     <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Pendaftaran Tahap 1</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
+                    <li class="breadcrumb-item active">Pendaftaran Tahap 1</li>
+                </ol>
+            </nav>
+        </div>
         <section class="section">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Data Pendaftar</h5>
 
-                    <form action="{{ route('pendaftaran.index') }}" method="GET" class="mb-3">
+                    <form action="{{ route('tahap_1') }}" method="GET" class="mb-3">
                         <div class="row align-items-center mb-3">
                             <div class="col-md-4">
                                 <label for="filterJurusan" class="form-label mb-1">Filter Jurusan:</label>
@@ -66,7 +75,6 @@
                                             <th>ASAL SEKOLAH</th>
                                             <th>JENIS KELAMIN</th>
                                             <th>JURUSAN</th>
-                                            <th>WHAATSAPP</th>
                                             <th>AKSI</th>
                                         </tr>
                                     </thead>
@@ -82,11 +90,9 @@
                                                 <td>{{ $p->asal_sekolah }}</td>
                                                 <td>{{ $p->jenis_kelamin }}</td>
                                                 <td>{{ $p->jurusan->nama_jurusan ?? '-' }}</td>
-                                                <td>{{ $p->no_hp }}</td>
                                                 <td>
-                                                    <a href="https://wa.me/62{{ $p->no_hp }}"
-                                                        class="btn btn-sm btn-success" target="_blank"><i
-                                                            class="bi bi-whatsapp"></i></a>
+                                                    <a href="{{ route('show.pendaftar', $p->id) }}"
+                                                        class="btn btn-sm btn-warning"><i class="bi bi-eye"></i></a>
                                                     <form action="{{ route('pendaftaran.destroy', $p->id) }}"
                                                         method="POST" class="d-inline">
                                                         @csrf

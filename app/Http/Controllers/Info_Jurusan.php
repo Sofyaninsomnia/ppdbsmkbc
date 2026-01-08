@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\InfoJurusan;
 use App\Models\Jurusan;
+
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -15,6 +17,8 @@ class Info_Jurusan extends Controller
 {
     public function index()
     {
+        // Carbon::setLocale('id');
+        // $tanggal = Carbon::translatedFormat('l, d F Y');
         $info_jurusan = InfoJurusan::latest()->get();
         return view('admin.info.info jurusan.index', compact('info_jurusan'));
     }
@@ -88,6 +92,8 @@ class Info_Jurusan extends Controller
 
     public function show(string $id)
     {
+        // Carbon::setLocale('id');
+        // $tanggal = Carbon::translatedFormat('l, d F Y');
         $infoJurusan = InfoJurusan::findOrFail($id);
         return view('admin.info.info jurusan.show', compact('infoJurusan'));
     }

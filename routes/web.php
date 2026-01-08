@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CasisController;
 use App\Http\Controllers\Home;
 use App\Http\Controllers\PendaftarController;
 use App\Http\Controllers\DashboardController;
@@ -66,6 +67,13 @@ Route::prefix('admin')->group(function () {
         Route::get('info_jurusan/edit/{id}', [Info_Jurusan::class, 'edit'])->name('info_jurusan.edit');
         Route::put('info_jurusan/update/{id}', [Info_Jurusan::class, 'update'])->name('info_jurusan.update');
         Route::delete('info_jurusan/delete/{id}', [Info_Jurusan::class, 'destroy'])->name('info_jurusan.destroy');
+
+        Route::get('/pendaftaran/tahap_1', [PendaftarController::class, 'index'])->name('tahap_1');
+        Route::get('/get/data_pendaftar/{id}', [PendaftarController::class, 'show'])->name('show.pendaftar');
+        Route::delete('/hapus/data/tahap_1/{id}', [PendaftarController::class, 'destroy'])->name('pendaftaran.destroy');
+
+        Route::get('/pendaftaran/tahap_2', [CasisController::class, 'index'])->name('tahap_2');
+        Route::get('/get_form/tahap_1', [CasisController::class, 'create'])->name('getForm_tahap_1');
     });
 
 });

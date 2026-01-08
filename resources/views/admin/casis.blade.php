@@ -7,19 +7,19 @@
 
     <main id="main" class="main">
         <div class="pagetitle">
-            <h1>Data Calon Siswa</h1>
+            <h1>Pendaftaran Tahap 2</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
                     <li class="breadcrumb-item active">Data Casis</li>
                 </ol>
-            </nav>
+            </nav> 
         </div>
         <section class="section">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Data Calon Siswa</h5>
-                    <form action="{{ route('casis.index') }}" method="GET" class="mb-1">
+                    <form action="{{ route('tahap_1') }}" method="GET" class="mb-1">
                         <div class="row align-items-center mb-3">
                             <div class="col-md-4">
                                 <label for="filterJurusan" class="form-label mb-1">Filter Jurusan:</label>
@@ -41,7 +41,7 @@
                             </div>
                         </div>
                     </form>
-                    <a href="{{ route('casis.create') }}" class="btn btn-sm btn-primary mb-2">Tambah</a>
+                    <a href="{{ route('getForm_tahap_1') }}" class="btn btn-sm btn-primary mb-2">Tambah</a>
 
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered">
