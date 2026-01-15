@@ -3,7 +3,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link @activeclass('admin/dashboard')" href="{{  route('admin.dashboard')}}">
+            <a class="nav-link @activeclass('admin/dashboard')" href="{{ route('admin.dashboard') }}">
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
             </a>
@@ -43,17 +43,18 @@
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#data-nav" data-bs-toggle="collapse" href="#"
                 aria-expanded="false">
-                <i class="bi bi-clipboard-data"></i><span>Data</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-clipboard-data"></i><span>Data Management</span><i
+                    class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="data-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav" style="">
                 <li class="nav-item">
-                    <a class="dropdown-item @activeclass('casis')" href="/casis">
+                    <a class="dropdown-item " href="{{ route('data_casis') }}">
                         <i class="bi bi-circle"></i>
                         <span>Data casis</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="dropdown-item @activeclass('ortu')" href="/ortu">
+                    <a class="dropdown-item " href="/ortu">
                         <i class="bi bi-circle"></i>
                         <span>Data ortu</span>
                     </a>
@@ -61,10 +62,10 @@
             </ul>
         </li>
 
-        
+
         <li class="nav-item">
             <a class="nav-link @activeclass('admin/user/management')" href="">
-                <i class="bi bi-folder2-open"></i>
+                <i class="bi bi-person-fill-gear"></i>
                 <span>User Management</span>
             </a>
         </li>
@@ -74,6 +75,15 @@
             <a class="nav-link @activeclass('berkas')" href="/berkas">
                 <i class="bi bi-folder2-open"></i>
                 <span>Pemberkasan</span>
+            </a>
+        </li>
+
+
+
+        <li class="nav-item">
+            <a class="nav-link @activeclass('berkas')" href="/berkas">
+                <i class="bi bi-megaphone"></i>
+                <span>Pengumuman</span>
             </a>
         </li>
 

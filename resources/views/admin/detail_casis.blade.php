@@ -11,8 +11,8 @@
             <h1>Detail Calon Siswa</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('casis.index') }}">Data Casis</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('tahap_2') }}">Data Casis</a></li>
                     <li class="breadcrumb-item active">Detail Casis</li>
                 </ol>
             </nav>
@@ -88,7 +88,7 @@
                                     <h5 class="card-title">Data Lengkap Calon Siswa</h5>
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Tanggal Lahir</div>
-                                        <div class="col-lg-9 col-md-8">: {{ \Carbon\Carbon::parse($casis->tgl_lahir ?? now())->format('d F Y') }}</div>
+                                        <div class="col-lg-9 col-md-8">: {{ $casis->ttl }}</div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Alamat Lengkap</div>

@@ -13,6 +13,7 @@ class Casis extends Model
 
     protected $fillable = [
         'nisn',
+        'nik',
         'nama',
         'ttl',
         'alamat',

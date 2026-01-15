@@ -11,16 +11,27 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Ubah data casis</h4>
-                    <form action="{{ route('casis.update', $casis->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('updateData.tahap2', $casis->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
                         <div class="row mb-3">
                             <label for="nisn" class="col-md-4 col-lg-3 col-form-label">Nisn</label>
                             <div class="col-md-8 col-lg-9">
-                                <input type="text" class="form-control @error('nisn') is-invalid @enderror"
+                                <input type="number" class="form-control @error('nisn') is-invalid @enderror"
                                     id="nisn" name="nisn" value="{{ old('nisn', $casis->nisn) }}" required>
                                 @error('nisn')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="nik" class="col-md-4 col-lg-3 col-form-label">Nik</label>
+                            <div class="col-md-8 col-lg-9">
+                                <input type="number" class="form-control @error('nik') is-invalid @enderror"
+                                    id="nik" name="nik" value="{{ old('nik', $casis->nik) }}" required>
+                                @error('nik')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -38,12 +49,12 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="tgl_lahir" class="col-md-4 col-lg-3 col-form-label">Tanggal Lahir</label>
+                            <label for="ttl" class="col-md-4 col-lg-3 col-form-label">Tanggal Lahir</label>
                             <div class="col-md-8 col-lg-9">
-                                <input type="date" class="form-control @error('tgl_lahir') is-invalid @enderror"
-                                    id="tgl_lahir" name="tgl_lahir" value="{{ old('tgl_lahir', $casis->tgl_lahir) }}"
+                                <input type="text" class="form-control @error('ttl') is-invalid @enderror"
+                                    id="ttl" name="ttl" value="{{ old('ttl', $casis->ttl) }}"
                                     required>
-                                @error('tgl_lahir')
+                                @error('ttl')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -140,7 +151,7 @@
 
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary">Simpan</button>
-                            <a href="{{ route('casis.index') }}" class="btn btn-secondary">Batal</a>
+                            <a href="{{ route('tahap_2') }}" class="btn btn-secondary">Batal</a>
                         </div>
                     </form>
 

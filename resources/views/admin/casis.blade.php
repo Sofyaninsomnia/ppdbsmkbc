@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Data Calon Siswa</h5>
-                    <form action="{{ route('tahap_1') }}" method="GET" class="mb-1">
+                    <form action="{{ route('tahap_2') }}" method="GET" class="mb-1">
                         <div class="row align-items-center mb-3">
                             <div class="col-md-4">
                                 <label for="filterJurusan" class="form-label mb-1">Filter Jurusan:</label>
@@ -36,15 +36,15 @@
                             </div>
                             <div class="col-md-5 offset-md-3"> {{-- Menggeser input search ke kanan --}}
                                 <label for="search" class="form-label mb-1">Cari Pendaftar:</label>
-                                <input type="search" class="form-control" name="search" id="search"
+                                <input type="text" class="form-control" name="search" class="search"
                                     placeholder="Cari NISN, Nama, Asal Sekolah..." value="{{ request('search') }}">
                             </div>
                         </div>
                     </form>
-                    <a href="{{ route('getForm_tahap_1') }}" class="btn btn-sm btn-primary mb-2">Tambah</a>
+                    <a href="{{ route('getForm_tahap_2') }}" class="btn btn-sm btn-primary mb-2">Tambah</a>
 
                     <div class="table-responsive">
-                        <table class="table table-striped table-bordered">
+                        <table class="table table-search table-striped table-bordered">
                             <thead>
                                 <tr>
                                     <th>NO</th>
@@ -73,16 +73,15 @@
                                         </td>
                                         <td>{{ $casis->asal_sekolah }}</td>
                                         <td>
-                                            <a href="{{ route('casis.edit', $casis->id) }}" class="btn btn-sm btn-info"><i
+                                            <a href="{{ route('formEdit_tahap2', $casis->id) }}" class="btn btn-sm btn-info"><i
                                                     class="bi bi-pen"></i></a>
-                                            <a href="{{ route('casis.show', $casis->id) }}"
+                                            <a href="{{ route('showData.tahap2', $casis->id) }}"
                                                 class="btn btn-sm btn-warning"><i class="bi bi-info-circle"></i></a>
-                                            <form action="{{ route('casis.destroy', $casis->id) }}" method="POST"
-                                                class="d-inline">
+                                            <form action="{{ route('deleteData.tahap2', $casis->id) }}" method="POST"
+                                                class="d-inline deleteform">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger"
-                                                    onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i
+                                                <button type="submit" class="btn btn-sm btn-danger"><i
                                                         class="bi bi-trash"></i></button>
                                             </form>
                                         </td>
@@ -101,14 +100,20 @@
 
     </main>
     <script>
-        @if (session('success'))
-            Swal.fire({
-                icon: 'success',
-                title: 'Berhasil!',
-                text: '{{ session('success') }}',
-                timer: 1500,
-                showConfirmButton: false
+        $(document).ready(function() {
+            $("body").on("change keyup keydown", ".search", function() {
+                var search = $(this).val();
+                var data = "search="+search;
+
+                $.ajak({
+                    method:POST,
+                    url:{{ route('table.casis') }}
+                    data:data,
+                    success:function(result){
+                        $(".table-search").html(result);
+                    }
+                })
             })
-        @endif
+        });
     </script>
 @endsection

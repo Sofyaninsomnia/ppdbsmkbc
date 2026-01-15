@@ -5,6 +5,7 @@ use App\Http\Controllers\CasisController;
 use App\Http\Controllers\Home;
 use App\Http\Controllers\PendaftarController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DataManagement;
 use App\Http\Controllers\Info_Jurusan;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\User\Calon_siswa;
@@ -73,7 +74,13 @@ Route::prefix('admin')->group(function () {
         Route::delete('/hapus/data/tahap_1/{id}', [PendaftarController::class, 'destroy'])->name('pendaftaran.destroy');
 
         Route::get('/pendaftaran/tahap_2', [CasisController::class, 'index'])->name('tahap_2');
-        Route::get('/get_form/tahap_1', [CasisController::class, 'create'])->name('getForm_tahap_1');
+        Route::get('/get_form/tahap_2', [CasisController::class, 'create'])->name('getForm_tahap_2');
+        Route::get('/formChange/data/tahap_2/{id}', [CasisController::class, 'edit'])->name('formEdit_tahap2');
+        Route::put('/update/data_tahap2/{id}', [CasisController::class, 'update'])->name('updateData.tahap2');
+        Route::get('/show/data_tahap2/{id}', [CasisController::class, 'show'])->name('showData.tahap2');
+        Route::delete('/delete/data_tahap2/{id}', [CasisController::class, 'destroy'])->name('deleteData.tahap2');
+
+        Route::get('/data_management/casis', [DataManagement::class, 'casis'])->name('data_casis');
     });
 
 });

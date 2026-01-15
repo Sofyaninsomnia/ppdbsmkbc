@@ -53,7 +53,8 @@ class PendaftarController extends Controller
 
     function show($id){
         $pendaftaran = Pendaftaran::with('user')->findOrFail($id);
-        return view('admin.info.info_ppdb.show', compact('pendaftaran'));
+        $kode_status = Pendaftaran::where('kode_aktivasi', $pendaftaran->kode_aktivasi)->first();
+        return view('admin.info.info_ppdb.show', compact('pendaftaran', 'kode_status'));
     }
 
     function destroy($id)
