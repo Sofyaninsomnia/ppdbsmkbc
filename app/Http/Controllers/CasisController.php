@@ -4,42 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Casis;
 use App\Models\Jurusan;
-use App\Models\Ortu;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class CasisController extends Controller
 {
-    function index(Request $request)
+    function index()
     {
-        $jurusan = Jurusan::all();
-        $casis = Casis::with('jurusan');
-
-        if ($request->has('jurusan_id') && $request->jurusan_id != '') {
-            $casis->where('jurusan_id', $request->jurusan_id);
-        }
-
-        if ($request->has('search') && $request->search != '') {
-            $searchTerm = '%' . $request->search . '%';
-
-            $casis->where(function ($query) use ($searchTerm) {
-                $query->where('nisn', 'like', $searchTerm)
-                    ->orWhere('nama', 'like', $searchTerm)
-                    ->orWhere('asal_sekolah', 'like', $searchTerm)
-                    ->orWhere('no_hp', 'like', $searchTerm)
-                    ->orWhereHas('jurusan', function ($q) use ($searchTerm) {
-                        $q->where('nama_jurusan', 'like', $searchTerm);
-                    });
-            });
-        }
-
-        $dataCasis = $casis->paginate(5);
-
-        $selectedJurusanId = $request->jurusan_id;
-        $searchTerm = $request->search;
-        return view('admin.casis', compact('jurusan', 'dataCasis', 'selectedJurusanId', 'searchTerm'));
+        return view('admin.casis');
     }
 
     function create()
