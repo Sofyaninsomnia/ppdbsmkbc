@@ -15,7 +15,7 @@
                 </div>
                 <div class="col-md-5 offset-md-3">
                     <label for="search" class="form-label mb-1">Cari Pendaftar:</label>
-                    <input type="text" wire:model.live.debounce.200ms="search" class="form-control" name="search"
+                    <input type="text" wire:model.live.debounce.500ms="search" class="form-control" name="search"
                         class="search" placeholder="Cari NISN, Nama, Asal Sekolah...">
                 </div>
             </div>

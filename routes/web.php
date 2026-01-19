@@ -72,6 +72,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/pendaftaran/tahap_1', [PendaftarController::class, 'index'])->name('tahap_1');
         Route::get('/get/data_pendaftar/{id}', [PendaftarController::class, 'show'])->name('show.pendaftar');
         Route::delete('/hapus/data/tahap_1/{id}', [PendaftarController::class, 'destroy'])->name('pendaftaran.destroy');
+        Route::get('/pendaftaran/searching', [PendaftarController::class, 'search'])->name('search.tahap1');
 
         Route::get('/pendaftaran/tahap_2', [CasisController::class, 'index'])->name('tahap_2');
         Route::get('/get_form/tahap_2', [CasisController::class, 'create'])->name('getForm_tahap_2');

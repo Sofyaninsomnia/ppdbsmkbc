@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('activation_kode', function (Blueprint $table) {
-            $table->id();
-            $table->string('');
-            $table->timestamps();
+        Schema::table('ortu', function (Blueprint $table) {
+            $table->bigInteger('casis_id')->after('user_id')->unsigned()->nullable();
+
+            $table->foreign('casis_id')->references('id')->on('casis')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -23,6 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('activation_kodes');
+        Schema::table('ortu', function (Blueprint $table) {
+            //
+        });
     }
 };

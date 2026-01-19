@@ -16,5 +16,6 @@ class Dokumen extends Model
         'path',      // WAJIB: Path tempat file disimpan
         'status',
         'batch_id',
+        'casis_id'
     ];
 }
